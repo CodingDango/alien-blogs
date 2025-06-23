@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS -->
+  <link href="./output.css" rel="stylesheet">
+</head>
+<body class="bg-my-black-300 p-0 m-0" >
+  <header class="z-20 sticky top-0 left-0 border-b-1 border-my-black-100 bg-my-black-300 text-my-white">
+    <div class="max-w-7xl py-[10px] flex justify-between items-center mx-auto">
+
+      <nav class="relative w-full flex justify-between items-center">
+        <a href="./index.html">
+          <div class="font-bold text-lg font-roboto-mono">
+            <div class="flex gap-3 items-center">
+              <div>
+                <img src="./assets/ufo.svg" width="40" height="40">
+              </div>
+              <div>Outsider Blogs</div>
+            </div>
+          </div>
+        </a>
+
+        <ul class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+          <div class="flex justify-between items-center gap-x-[48px]">
+            <li>
+              <a class="text-my-light-gray" href="#">Home</a>
+            </li>
+
+            <li>
+              <a class="text-my-light-gray" href="#">Blogs</a>
+            </li>
+
+            <li>
+              <a class="text-my-light-gray" href="#">About</a>
+            </li>
+          </div>
+        </ul>
+
+          <div class="flex gap-x-[32px] items-center">
+              <a href="#">
+                <div class="text-my-light-gray font-bold">Sign Up</div>
+              </a>
+        
+              <a href="#">
+                <div class="text-my-white px-[1rem] py-[8px] border-1 rounded-md">Log In</div>
+              </a>
+          </div>
+      </nav>
+    
+    </div>
+  </header>
+
+    <main>
+      <div class="overflow-x-hidden min-h-[calc(100vh-3rem)] py-[80px]">
+        <div class="max-w-7xl mx-auto flex flex-col gap-[48px]">
+
+          <!-- Featured Blog -->
+          <div class="grid grid-cols-2 gap-[48px] items-center">
+            <!-- Img -->
+            <div class="h-[300px] bg-my-white rounded-md"></div> 
+
+            <!-- content -->
+            <div class="flex flex-col gap-[32px]">
+
+              <div class="flex flex-col gap-[16px]">
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-my-lime">DangoDev</p>
+                  <p class="font-bold text-my-light-gray">June 21, 2025</p>
+                </div>
+
+                <h1 class="text-my-white text-[40px]">Featured Blog Header</h1>
+                <p class="text-my-light-gray">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione cupiditate numquam quam dolores fugiat ullam quae nam distinctio voluptatem voluptate, veritatis hic a iusto est, fugit esse excepturi harum sunt.</p>
+              </div>
+
+              <!-- Read more anchor tag -->
+              <div class="flex items-center gap-x-[1rem]">
+                <a class="font-bold text-neon-purple" href="#">Read More</a>
+                <img src="./assets/rightArrow.png">
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Blog Section -->
+          <div>
+            <!-- Header -->
+            <div>
+              <h2 class="text-my-white text-[32px]">Our Recent Blogs</h2>
+              <p class="text-my-light-gray">Lorem Ipsum Outsider Blog List</p>
+            </div>
+
+            <!-- Blog list -->
+            <div class="mt-[2rem] grid grid-cols-4 gap-x-[2rem] gap-y-[3rem]">
+
+              <div>
+                <div class="bg-my-white h-[150px] rounded-md"></div>
+                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                  <div class="flex justify-between items-center">
+                    <p class="font-bold text-my-lime">DangoDev</p>
+                    <p class="font-bold text-my-light-gray">June 21, 2025</p>
+                  </div>
+                  <h1 class="text-my-white text-[24px]">Blog Header</h1>
+                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <!-- Read more anchor tag -->
+                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                    <a class="font-bold text-neon-purple" href="#">Read More</a>
+                    <img src="./assets/rightArrow.png">
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bg-my-white h-[150px] rounded-md"></div>
+                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                  <div class="flex justify-between items-center">
+                    <p class="font-bold text-my-lime">DangoDev</p>
+                    <p class="font-bold text-my-light-gray">June 21, 2025</p>
+                  </div>
+                  <h1 class="text-my-white text-[24px]">Blog Header</h1>
+                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <!-- Read more anchor tag -->
+                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                    <a class="font-bold text-neon-purple" href="#">Read More</a>
+                    <img src="./assets/rightArrow.png">
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bg-my-white h-[150px] rounded-md"></div>
+                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                  <div class="flex justify-between items-center">
+                    <p class="font-bold text-my-lime">DangoDev</p>
+                    <p class="font-bold text-my-light-gray">June 21, 2025</p>
+                  </div>
+                  <h1 class="text-my-white text-[24px]">Blog Header</h1>
+                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <!-- Read more anchor tag -->
+                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                    <a class="font-bold text-neon-purple" href="#">Read More</a>
+                    <img src="./assets/rightArrow.png">
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bg-my-white h-[150px] rounded-md"></div>
+                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                  <div class="flex justify-between items-center">
+                    <p class="font-bold text-my-lime">DangoDev</p>
+                    <p class="font-bold text-my-light-gray">June 21, 2025</p>
+                  </div>
+                  <h1 class="text-my-white text-[24px]">Blog Header</h1>
+                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <!-- Read more anchor tag -->
+                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                    <a class="font-bold text-neon-purple" href="#">Read More</a>
+                    <img src="./assets/rightArrow.png">
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bg-my-white h-[150px] rounded-md"></div>
+                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                  <div class="flex justify-between items-center">
+                    <p class="font-bold text-my-lime">DangoDev</p>
+                    <p class="font-bold text-my-light-gray">June 21, 2025</p>
+                  </div>
+                  <h1 class="text-my-white text-[24px]">Blog Header</h1>
+                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <!-- Read more anchor tag -->
+                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                    <a class="font-bold text-neon-purple" href="#">Read More</a>
+                    <img src="./assets/rightArrow.png">
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="w-full bg-my-black-300 border-t-1 border-my-black-100">
+      <div class="flex flex-col items-center py-[40px] px-[30px] gap-y-[30px]">
+
+        <!-- Identity -->
+        <div class="flex flex-col items-center gap-y-[1rem]">
+          <img src="./assets/alien.png" width="45" height="40">
+          <p class="text-[20px] font-roboto-mono font-bold flex gap-x-[1rem]">
+            <span class="text-my-white">Dango</span><span class="text-my-black-100">Dev</span>
+          </p>
+        </div>
+
+        <!-- Nav -->
+        <div class="flex flex-col items-center gap-y-[1rem]">
+
+          <!-- Socials -->
+          <div class="flex items-center justify-center gap-x-[26px]">
+            <div class="px-[10px] py-[10px] bg-my-black-250 rounded-[50%]">
+              <img src="./assets/social.png">
+            </div>
+
+            <div class="px-[10px] py-[10px] bg-my-black-250 rounded-[50%]">
+              <img src="./assets/social.png">
+            </div>
+
+            <div class="px-[10px] py-[10px] bg-my-black-250 rounded-[50%]">
+              <img src="./assets/social.png">
+            </div>
+
+            <div class="px-[10px] py-[10px] bg-my-black-250 rounded-[50%]">
+              <img src="./assets/social.png">
+            </div>
+
+          </div>
+
+          <!-- Site nav -->
+          <nav>
+            <div class="flex items-center justify-center gap-x-[28px] font-roboto-mono text-my-white font-light">
+              <div>
+                <a class="underline" href="./index.html">Home</a>
+              </div>
+              
+              <div>
+                <a class="underline" href="./blogs.html">Blogs</a>
+              </div>
+
+              <div>
+                <a class="underline" href="./about.html">About</a>
+              </div>
+
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="bg-my-black-250 w-full px-[30px] py-[5px]">
+        <p class="text-my-light-gray text-[0.8rem]">Copyright ©2025 <a class="text-neon-purple" href="https://github.com/CodingDango">DangoDev</a></p>
+      </div>
+    </footer>
+
+</body>
+</html> 

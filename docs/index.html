@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS -->
+  <link href="./output.css" rel="stylesheet">
+</head>
+<body class="bg-my-black-300 p-0 m-0" >
+  <header class="z-20 sticky top-0 left-0 border-b-1 border-my-black-100 bg-my-black-300 text-my-white">
+    <div class="max-w-7xl py-[10px] flex justify-between items-center mx-auto">
+
+      <nav class="relative w-full flex justify-between items-center">
+        <a href="./index.html">
+          <div class="font-bold text-lg font-roboto-mono">
+            <div class="flex gap-3 items-center">
+              <div>
+                <img src="./assets/ufo.svg" width="40" height="40">
+              </div>
+              <div>Outsider Blogs</div>
+            </div>
+          </div>
+        </a>
+
+        <ul class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+          <div class="flex justify-between items-center gap-x-[48px]">
+            <li>
+              <a class="text-my-light-gray" href="#">Home</a>
+            </li>
+
+            <li>
+              <a class="text-my-light-gray" href="#">Blogs</a>
+            </li>
+
+            <li>
+              <a class="text-my-light-gray" href="#">About</a>
+            </li>
+          </div>
+        </ul>
+
+          <div class="flex gap-x-[32px] items-center">
+              <a href="#">
+                <div class="text-my-light-gray font-bold">Sign Up</div>
+              </a>
+        
+              <a href="#">
+                <div class="text-my-white px-[1rem] py-[8px] border-1 rounded-md">Log In</div>
+              </a>
+          </div>
+      </nav>
+    
+    </div>
+  </header>
+    
+    <main class="overflow-x-hidden">
+
+      <!-- Hero -->
+      <section class="w-full relative h-[calc(100vh-3.5rem)]">
+
+        <!-- Bg -->
+        <div>
+          <div class="absolute w-screen h-[calc(100vh-3.5rem)] bg-my-black-300 opacity-80 -z-9"></div>
+          <div class="absolute top-0 left-0 -z-10">
+            <img src="assets/heroBg.png" class="object-cover w-screen h-[calc(100vh-3.5rem)]">
+          </div>
+        </div>
+        
+        <!-- Content -->
+      
+        <div class="relative relative max-w-7xl mx-auto text-my-white flex w-full h-full">
+
+          <div class="mt-[120px] w-full flex flex-col justify-start items-center">
+            <div class="flex flex-col gap-[30px] max-w-[600px]">
+              <h1 class="text-center font-roboto-mono text-5xl">Astonishing Phenomenal Text</h1>
+              <p class="text-center text-my-light-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque facilisis a enim vel fringilla. Morbi sed leo ac eros commodo iaculis. Cras eu massa mauris. Vestibulum quis quam mi.</p>
+            </div>
+
+            <div>
+              <a href="./blogs.html" class="font-bold font-roboto-mono">
+                <div class="bg-neon-purple inline-block mt-[50px] px-10 py-3 rounded-lg">Read blogs</div>
+              </a>
+            </div>
+
+            <img class="absolute bottom-[-100px] left-1/2 -translate-x-1/2 z-[-1]" src="./assets/bigUfo.png">
+      
+          </div>
+
+            </div>
+          </div>
+        </div>
+        
+      </section>
+
+      <!-- Testimonies -->
+
+      <section class="width-full bg-my-black-300 rounded-mx">
+
+        <div class=" py-[80px] gap-[40px]">
+
+          <div class="flex flex-col justify-center items-center gap-y-[1.5rem]">
+            <h1 class="text-4xl font-roboto-mono text-my-white">Alien Testimonies</h1>
+            <div class="w-[200px] h-[1px] bg-my-lime"></div>
+          </div>
+
+          <div class="max-w-7xl mx-auto mt-[60px] flex justify-between gap-[40px]">
+            <!-- Cards -->
+            <div class="py-[40px] px-[20px] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
+              <div class="text-center flex flex-col items-center gap-[20px] h-full">
+                <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
+                <p class="text-my-light-gray">
+                  “Praesent bibendum dolor asdsdwdwdwdwdwdwdwdwdin suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
+                </p>
+                <div class="flex flex-col gap-y-[7px] mt-auto">
+                  <p class="text-my-white font-bold font-roboto-mono">Glorb The Third</p>
+                  <p class="text-my-lime font-bold font-roboto-mono">Ruler of the universe</p>
+                </div>
+              </div>
+            </div>
+              
+            <div class="py-[40px] px-[20px] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
+              <div class="text-center flex flex-col items-center gap-[20px] h-full">
+                <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
+                <p class="text-my-light-gray">
+                  “Praesent bibendum dolor in suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
+                </p>
+                <div class="flex flex-col gap-y-[7px] mt-auto">
+                  <p class="text-my-white font-bold font-roboto-mono">Arilou Lalee'layd</p>
+                  <p class="text-my-lime font-bold font-roboto-mono">Alien from Star Wars</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="py-[40px] px-[20px] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
+              <div class="text-center flex flex-col items-center gap-[20px] h-full">
+                <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
+                <p class="text-my-light-gray">
+                  “Praesent bibendum dolor in suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
+                </p>
+                <div class="flex flex-col gap-y-[7px] mt-auto">
+                  <p class="text-my-white font-bold font-roboto-mono">Xorvax</p>
+                  <p class="text-my-lime font-bold font-roboto-mono">Area 51 Alien Escapee</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-my-black-300 border-t-1 border-my-black-100">
+      <div class="flex flex-col items-center py-[40px] px-[30px] gap-y-[30px]">
+
+        <!-- Identity -->
+        <div class="flex flex-col items-center gap-y-[1rem]">
+          <img src="./assets/alien.png" width="45" height="40">
+          <p class="text-[20px] font-roboto-mono font-bold flex gap-x-[1rem]">
+            <span class="text-my-white">Dango</span><span class="text-my-black-100">Dev</span>
+          </p>
+        </div>
+
+        <!-- Nav -->
+        <div class="flex flex-col items-center gap-y-[1rem]">
+
+          <!-- Socials -->
+          <div class="flex items-center justify-center gap-x-[26px]">
+            <div class="px-[10px] py-[10px] bg-my-black-250 rounded-[50%]">
+              <img src="./assets/social.png">
+            </div>
+
+            <div class="px-[10px] py-[10px] bg-my-black-250 rounded-[50%]">
+              <img src="./assets/social.png">
+            </div>
+
+            <div class="px-[10px] py-[10px] bg-my-black-250 rounded-[50%]">
+              <img src="./assets/social.png">
+            </div>
+
+            <div class="px-[10px] py-[10px] bg-my-black-250 rounded-[50%]">
+              <img src="./assets/social.png">
+            </div>
+
+          </div>
+
+          <!-- Site nav -->
+          <nav>
+            <div class="flex items-center justify-center gap-x-[28px] font-roboto-mono text-my-white font-light">
+              <div>
+                <a class="underline" href="./index.html">Home</a>
+              </div>
+              
+              <div>
+                <a class="underline" href="./blogs.html">Blogs</a>
+              </div>
+
+              <div>
+                <a class="underline" href="./about.html">About</a>
+              </div>
+
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="bg-my-black-250 w-full px-[30px] py-[5px]">
+        <p class="text-my-light-gray text-[0.8rem]">Copyright ©2025 <a class="text-neon-purple" href="https://github.com/CodingDango">DangoDev</a></p>
+      </div>
+    </footer>
+
+</body>
+</html> 
