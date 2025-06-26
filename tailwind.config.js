@@ -8,6 +8,10 @@ module.exports = {
 
   theme: {
     extend: {
+      spacing: {
+        'header': '3.7rem'
+      },
+      
       colors: {
         'my-black-300'  : '#121212',
         'my-black-250'  : '#1E1E1E',
