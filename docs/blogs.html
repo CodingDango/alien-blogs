@@ -10,107 +10,108 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <!-- TailwindCSS -->
-  <link href="./output.css" rel="stylesheet">
-  <script src="./script.js"></script>
+  <link href='css/output.css' rel="stylesheet">
+  <script src='js/menu.js'></script>
 
   <!-- Fontawesome -->
   <script src="https://kit.fontawesome.com/42a5858d3a.js" crossorigin="anonymous"></script>
-
 </head>
-<body class="bg-my-black-300 p-0 m-0" >
-    <header class="px-5 z-20 sticky top-0 left-0 border-b-1 border-my-black-100 bg-my-black-300 text-my-white">
-      <div class="max-w-7xl py-[10px] flex justify-between items-center mx-auto">
-        <nav class="relative w-full flex justify-between items-center">
-          <a href="./index.html">
-            <div class="font-bold text-lg font-roboto-mono">
-              <div class="flex gap-3 items-center">
-                <div>
-                  <img src="./assets/ufo.svg" width="35" height="35">
+<body class="bg-my-black-300 p-0 m-0">
+    <header>
+      <div class="px-5 z-20 sticky top-0 left-0 border-b-1 border-my-black-100 bg-my-black-300 text-my-white">
+        <div class="max-w-7xl py-[10px] flex justify-between items-center mx-auto">
+          <nav class="relative w-full flex justify-between items-center">
+            <a href="./index.html">
+              <div class="font-bold text-lg font-roboto-mono">
+                <div class="flex gap-3 items-center">
+                  <div>
+                    <img src="imgs/ufo.svg" width="35" height="35">
+                  </div>
+                  <div>Outsider Blogs</div>
                 </div>
-                <div>Outsider Blogs</div>
               </div>
+            </a>
+
+            <div class="invisible md:visible ">
+              <button class="mt-1 visible md:invisible" id="burgerMenuButton" onclick="showHamburgerMenu()">
+                <div id="burgerMenuBg" class="bg-burger-icon bg-no-repeat bg-contain bg-center w-[35px] h-[30px]"></div>
+              </button>
+              <ul>
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-x-[2rem]">
+                  <li>
+                    <a class="text-my-light-gray" href="./index.html">Home</a>
+                  </li>
+
+                  <li>
+                    <a class="text-my-light-gray" href="./blogs.html">Blogs</a>
+                  </li>
+
+                  <li>
+                    <a class="text-my-light-gray" href="./about.html">About</a>
+                  </li>
+                </div>
+
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 flex gap-x-[16px] items-center">
+                  <li>
+                    <a class="inline-block" href="./sign-up.html">
+                      <div class="text-center text-my-light-gray px-[1rem] py-[8px] rounded-md">Sign Up</div>
+                    </a>
+                  </li>
+              
+                  <li>
+                    <a class="inline-block" href="./login.html">
+                      <div class="text-center text-my-white px-[1rem] py-[8px] border-1 rounded-md">Log In</div>
+                    </a>
+                  </li>
+                </div>
+
+              </ul>
             </div>
-          </a>
-
-          <div class="invisible md:visible ">
-            <button class="mt-1 visible md:invisible" id="burgerMenuButton" onclick="showHamburgerMenu()">
-              <div id="burgerMenuBg" class="bg-[url(./assets/burgerMenu.png)] bg-no-repeat bg-contain bg-center w-[35px] h-[30px]"></div>
-            </button>
-            <ul>
-              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-x-[2rem]">
-                <li>
-                  <a class="text-my-light-gray" href="#">Home</a>
-                </li>
-
-                <li>
-                  <a class="text-my-light-gray" href="#">Blogs</a>
-                </li>
-
-                <li>
-                  <a class="text-my-light-gray" href="#">About</a>
-                </li>
-              </div>
-
-              <div class="absolute right-0 top-1/2 -translate-y-1/2 flex gap-x-[16px] items-center">
-                <li>
-                  <a class="inline-block" href="#">
-                    <div class="text-center text-my-light-gray px-[1rem] py-[8px] rounded-md">Sign Up</div>
-                  </a>
-                </li>
-            
-                <li>
-                  <a class="inline-block" href="#">
-                    <div class="text-center text-my-white px-[1rem] py-[8px] border-1 rounded-md">Log In</div>
-                  </a>
-                </li>
-              </div>
-
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Hamburger Menu -->
-    <nav id="mobile-menu"
-        class="hidden md:hidden  fixed right-0 w-full max-w-[300px] h-[calc(100vh-3.5rem)] bg-my-neutral-max z-50" >
-
-        <ul class="flex flex-col p-[20px] p-[40px] gap-y-[1rem]">
-          <li><a class="font-roboto-mono text-my-white" href="#">Home</a></li>
-          <li><a class="font-roboto-mono text-my-white" href="#">Blogs</a></li>
-          <li><a class="font-roboto-mono text-my-white" href="#">About</a></li>
-
-        <div class="mt-[0.5rem] mb-[0.5rem] w-full border-t-1 border-my-black-100 h-1"></div>
-
-        <div class="flex flex-col gap-[1rem]">
-          <li>
-            <a class="inline-block" href="#">
-              <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] bg-neon-purple rounded-md">Sign Up</div>
-            </a>
-          </li>
-      
-          <li>
-            <a class="inline-block" href="#">
-              <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] border-1 rounded-md">Log In</div>
-            </a>
-          </li>
+          </nav>
         </div>
-      </ul>
-    </nav>
+      </div>
+      
+      <!-- Hamburger Menu -->
+      <nav id="mobile-menu"
+          class="hidden md:hidden fixed right-0 w-full max-w-[300px] h-[calc(100vh-3.5rem)] bg-my-neutral-max z-50" >
+
+          <ul class="flex flex-col p-[20px] p-[40px] gap-y-[1rem]">
+            <li><a class="font-roboto-mono text-my-white" href="./index.html">Home</a></li>
+            <li><a class="font-roboto-mono text-my-white" href="./blogs.html">Blogs</a></li>
+            <li><a class="font-roboto-mono text-my-white" href="./about.html">About</a></li>
+
+          <div class="mt-[0.5rem] mb-[0.5rem] w-full border-t-1 border-my-black-100 h-1"></div>
+
+          <div class="flex flex-col gap-[1rem]">
+            <li>
+              <a class="inline-block" href="#">
+                <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] bg-neon-purple rounded-md">Sign Up</div>
+              </a>
+            </li>
+        
+            <li>
+              <a class="inline-block" href="#">
+                <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] border-1 rounded-md">Log In</div>
+              </a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </header>
 
     <main>
       <div class="overflow-x-hidden min-h-[calc(100vh-3rem)] py-[80px]">
-        <div class="max-w-7xl mx-auto flex flex-col gap-[48px]">
+        <div class="px-5 max-w-7xl mx-auto flex flex-col gap-[48px]">
 
           <!-- Featured Blog -->
-          <div class="grid grid-cols-2 gap-[48px] items-center">
+          <div class="bg-my-dark-grey grid md:grid-cols-2 gap-x-[3rem] gap-y-[2rem] items-center rounded-lg">
             <!-- Img -->
-            <div class="h-[300px] bg-my-white rounded-md"></div> 
+            <div class="min-h-[300px] h-full bg-my-white rounded-md"></div> 
 
             <!-- content -->
-            <div class="flex flex-col gap-[32px]">
+            <div class="pr-10 py-5 flex flex-col gap-[32px]">
 
-              <div class="flex flex-col gap-[16px]">
+              <div class="flex flex-col gap-[1rem]">
                 <div class="flex justify-between items-center">
                   <p class="font-bold text-my-lime">DangoDev</p>
                   <p class="font-bold text-my-light-gray">June 21, 2025</p>
@@ -123,7 +124,7 @@
               <!-- Read more anchor tag -->
               <div class="flex items-center gap-x-[1rem]">
                 <a class="font-bold text-neon-purple" href="#">Read More</a>
-                <img src="./assets/rightArrow.png">
+                <img src="imgs/rightArrow.png">
               </div>
 
             </div>
@@ -138,92 +139,79 @@
             </div>
 
             <!-- Blog list -->
-            <div class="mt-[2rem] grid grid-cols-4 gap-x-[2rem] gap-y-[3rem]">
+            <div class="mt-[2rem] grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[2rem] gap-y-[3rem]">
 
-              <div>
+              <div class="bg-my-dark-grey rounded-lg">
                 <div class="bg-my-white h-[150px] rounded-md"></div>
-                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                <div class="px-5 py-5 flex flex-col gap-[10px]">
                   <div class="flex justify-between items-center">
                     <p class="font-bold text-my-lime">DangoDev</p>
                     <p class="font-bold text-my-light-gray">June 21, 2025</p>
                   </div>
                   <h1 class="text-my-white text-[24px]">Blog Header</h1>
-                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <p class="text-my-light-gray mb-[1rem]">Wanna know cool stuff about aliens? They built the pyramids! sdadwdwadada sdadwdwadada sdadwdwadada sdadwdwadada And they were the ones that wiped the dinosaurs.</p>
                   <!-- Read more anchor tag -->
-                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                  <div class="mt-auto flex items-center gap-x-[1rem]">
                     <a class="font-bold text-neon-purple" href="#">Read More</a>
-                    <img src="./assets/rightArrow.png">
+                    <img src="imgs/rightArrow.png">
                   </div>
                 </div>
               </div>
 
-              <div>
+                            <div class="bg-my-dark-grey rounded-lg">
                 <div class="bg-my-white h-[150px] rounded-md"></div>
-                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                <div class="px-5 py-5 flex flex-col gap-[10px]">
                   <div class="flex justify-between items-center">
                     <p class="font-bold text-my-lime">DangoDev</p>
                     <p class="font-bold text-my-light-gray">June 21, 2025</p>
                   </div>
                   <h1 class="text-my-white text-[24px]">Blog Header</h1>
-                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <p class="text-my-light-gray mb-[1rem]">Wanna know cool stuff about aliens? They built the pyramids! sdadwdwadada sdadwdwadada sdadwdwadada sdadwdwadada And they were the ones that wiped the dinosaurs.</p>
                   <!-- Read more anchor tag -->
-                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                  <div class="mt-auto flex items-center gap-x-[1rem]">
                     <a class="font-bold text-neon-purple" href="#">Read More</a>
-                    <img src="./assets/rightArrow.png">
+                    <img src="imgs/rightArrow.png">
                   </div>
                 </div>
               </div>
 
-              <div>
+                            <div class="bg-my-dark-grey rounded-lg">
                 <div class="bg-my-white h-[150px] rounded-md"></div>
-                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                <div class="px-5 py-5 flex flex-col gap-[10px]">
                   <div class="flex justify-between items-center">
                     <p class="font-bold text-my-lime">DangoDev</p>
                     <p class="font-bold text-my-light-gray">June 21, 2025</p>
                   </div>
                   <h1 class="text-my-white text-[24px]">Blog Header</h1>
-                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <p class="text-my-light-gray mb-[1rem]">Wanna Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque, praesentium magnam ab nisi dolore porro pariatur facere aut minus ratione fuga tempora quod vel consectetur unde cum earum. Ea, sapiente.know cool stuff about aliens? They built the pyramids! sdadwdwadada sdadwdwadada sdadwdwadada sdadwdwadada And they were the ones that wiped the dinosaurs.</p>
                   <!-- Read more anchor tag -->
-                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                  <div class="mt-auto flex items-center gap-x-[1rem]">
                     <a class="font-bold text-neon-purple" href="#">Read More</a>
-                    <img src="./assets/rightArrow.png">
+                    <img src="imgs/rightArrow.png">
                   </div>
                 </div>
               </div>
 
-              <div>
+                            <div class="bg-my-dark-grey rounded-lg">
                 <div class="bg-my-white h-[150px] rounded-md"></div>
-                <div class="mt-[2rem] flex flex-col gap-[10px]">
+                <div class="px-5 py-5 flex flex-col gap-[10px]">
                   <div class="flex justify-between items-center">
                     <p class="font-bold text-my-lime">DangoDev</p>
                     <p class="font-bold text-my-light-gray">June 21, 2025</p>
                   </div>
                   <h1 class="text-my-white text-[24px]">Blog Header</h1>
-                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
+                  <p class="text-my-light-gray mb-[1rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla exercitationem expedita esse, magnam omnis, modi commodi beatae dolore iusto inventore in! Aliquid ex repudiandae odio maiores eius sapiente illum ea?</p>
                   <!-- Read more anchor tag -->
-                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
+                  <div class="mt-auto flex items-center gap-x-[1rem]">
                     <a class="font-bold text-neon-purple" href="#">Read More</a>
-                    <img src="./assets/rightArrow.png">
+                    <img src="imgs/rightArrow.png">
                   </div>
                 </div>
               </div>
 
-              <div>
-                <div class="bg-my-white h-[150px] rounded-md"></div>
-                <div class="mt-[2rem] flex flex-col gap-[10px]">
-                  <div class="flex justify-between items-center">
-                    <p class="font-bold text-my-lime">DangoDev</p>
-                    <p class="font-bold text-my-light-gray">June 21, 2025</p>
-                  </div>
-                  <h1 class="text-my-white text-[24px]">Blog Header</h1>
-                  <p class="text-my-light-gray">Wanna know cool stuff about aliens? They built the pyramids! And they were the ones that wiped the dinosaurs.</p>
-                  <!-- Read more anchor tag -->
-                  <div class="mt-[1rem] flex items-center gap-x-[1rem]">
-                    <a class="font-bold text-neon-purple" href="#">Read More</a>
-                    <img src="./assets/rightArrow.png">
-                  </div>
-                </div>
-              </div>
+            
+
+              
 
           </div>
         </div>
@@ -237,7 +225,7 @@
 
         <!-- Identity -->
         <div class="flex flex-col items-center gap-y-[1rem]">
-          <img src="./assets/alien.png" width="45" height="40">
+          <img src="./imgs/alien.png" width="45" height="40">
           <p class="text-[20px] font-roboto-mono font-bold flex gap-x-[1rem]">
             <span class="text-my-white">Dango</span><span class="text-my-black-100">Dev</span>
           </p>
@@ -263,7 +251,7 @@
         </div>
       </div>
       <div class="bg-my-black-250 w-full px-5 py-[5px]">
-        <p class="text-my-light-gray text-[0.8rem]">Copyright ©2025 <a class="text-neon-purple" href="https://github.com/CodingDango">DangoDev</a></p>
+        <p class="text-my-light-gray text-[0.8rem]">Copyright ©2025 <a class="text-neon-purple" href="https://github.com/CodingDango" target="_blank">DangoDev</a></p>
       </div>
     </footer>
 

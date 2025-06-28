@@ -3,7 +3,7 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
-    './docs/*.html', 
+    './docs/', 
   ],
 
   theme: {
@@ -23,6 +23,12 @@ module.exports = {
         'neon-purple'   : '#9370DB',
         'my-light-gray' : '#99A1AF',
         'my-lime' : '#B8DB70',
+        'my-dark-grey' : '#18181b'
+      },
+
+      backgroundImage: {
+        'burger-icon': "url('/static/imgs/burgerMenu.png')",
+        'close-icon': "url('/static/imgs/closeIcon.png')",
       },
 
       fontFamily: {
@@ -35,5 +41,3 @@ module.exports = {
     },
   },
 }
-
-

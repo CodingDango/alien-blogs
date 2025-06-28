@@ -5,15 +5,7 @@ function showHamburgerMenu()
 
     // Change the icon of the button
     hamburgerMenuImg.classList.toggle("close")
-    hamburgerMenuImg.classList.toggle("bg-[url(./assets/burgerMenuClose.png)]");
-    hamburgerMenuImg.classList.toggle("bg-[url(./assets/burgerMenu.png)]");
+    hamburgerMenuImg.classList.toggle("bg-burger-icon");
+    hamburgerMenuImg.classList.toggle("bg-close-icon");
     mobileMenu.classList.toggle("hidden")
-
-    // Make the menu appear on the side.
-    
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-
-});

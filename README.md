@@ -1,2 +1,12 @@
-# alien-blogs
-Full stack alien blog site. (IN PROGRESS)
+Create blog page
+    - Title header.
+      - Regular Input
+      - Max of 50 characters
+      - Cannot be empty
+
+    - Short blog description
+      - Text area
+      - Max of 200 characters
+      - Cannot be empty
+    
+    - Post Button
