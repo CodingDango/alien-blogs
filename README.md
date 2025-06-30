@@ -6,7 +6,7 @@ Create blog page
 
     - Short blog description
       - Text area
-      - Max of 200 characters
+      - Max of 180 characters
       - Cannot be empty
     
     - Post Button

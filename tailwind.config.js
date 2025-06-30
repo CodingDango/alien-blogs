@@ -4,10 +4,15 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 module.exports = {
   content: [
     './docs/', 
+    './my_blog/templates/', 
   ],
 
   theme: {
     extend: {
+      plugins: [
+        require("@tailwindcss/line-clamp")
+      ],
+
       spacing: {
         'header': '3.7rem'
       },
@@ -21,6 +26,7 @@ module.exports = {
         'my-white'      : '#EFEEEA',
         'my-orange'     : '#FE7743',
         'neon-purple'   : '#9370DB',
+        'mono-neon-purple'   : '#7447D1',
         'my-light-gray' : '#99A1AF',
         'my-lime' : '#B8DB70',
         'my-dark-grey' : '#18181b'

@@ -2,9 +2,11 @@
   "scripts": {
     "watch": "npx @tailwindcss/cli -i ./docs/css/input.css -o ./docs/css/output.css --watch"
   },
-
   "dependencies": {
     "@tailwindcss/cli": "^4.1.10",
     "tailwindcss": "^4.1.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4"
   }
 }

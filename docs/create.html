@@ -12,13 +12,14 @@
   <!-- TailwindCSS -->
   <link href='css/output.css' rel="stylesheet">
   <script src='js/menu.js'></script>
+  <script src='js/post.js'></script>
 
   <!-- Fontawesome -->
   <script src="https://kit.fontawesome.com/42a5858d3a.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-my-black-300 p-0 m-0">
-    <header>
-      <div class="px-5 z-20 sticky top-0 left-0 border-b-1 border-my-black-100 bg-my-black-300 text-my-white">
+    <header class="sticky top-0 left-0 z-20">
+      <div class="px-5 border-b-1 border-my-black-100 bg-my-black-300 text-my-white">
         <div class="max-w-7xl py-[10px] flex justify-between items-center mx-auto">
           <nav class="relative w-full flex justify-between items-center">
             <a href="./index.html">
@@ -70,10 +71,10 @@
           </nav>
         </div>
       </div>
-      
+
       <!-- Hamburger Menu -->
       <nav id="mobile-menu"
-          class="hidden md:hidden fixed right-0 w-full max-w-[300px] h-[calc(100vh-3.5rem)] bg-my-neutral-max z-50" >
+          class="hidden md:hidden fixed right-0 w-full max-w-[250px] border-l-1 border-my-black-100 h-[calc(100vh-theme(spacing.header))] bg-my-black-300 z-50" >
 
           <ul class="flex flex-col p-[20px] p-[40px] gap-y-[1rem]">
             <li><a class="font-roboto-mono text-my-white" href="./index.html">Home</a></li>
@@ -84,13 +85,13 @@
 
           <div class="flex flex-col gap-[1rem]">
             <li>
-              <a class="inline-block" href="#">
+              <a class="inline-block" href="./sign-up.html">
                 <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] bg-neon-purple rounded-md">Sign Up</div>
               </a>
             </li>
         
             <li>
-              <a class="inline-block" href="#">
+              <a class="inline-block" href="./login.html">
                 <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] border-1 rounded-md">Log In</div>
               </a>
             </li>
@@ -98,12 +99,121 @@
         </ul>
       </nav>
     </header>
+    <main class="flex justify-center p-0 md:py-10">
+    
 
-    <main>
-      <div class="pt-[120px]">
+    <div class="bg-my-black-250 p-5 py-20 md:p-10 rounded-md w-full max-w-3xl">
+
+      <form id="post-form" class="flex flex-col gap-y-8" method="post" action="/create-blog" novalidate>
+
+        <div>
+          <h1 class="text-white text-3xl sm:text-4xl font-semibold">Create Blog</h1>
+
+          <div class="h-1 w-20 bg-neon-purple mt-2 rounded-full"></div>
+        </div>
         
-      </div>
-    </main>
+        <div class="flex flex-col gap-y-2">
 
-    <footer>
-    </footer>
+          <div class="flex justify-between items-baseline">
+            <div class="flex gap-x-[1rem]">
+              <label for="post-title" class="font-semibold text-lg text-white">Title</label>
+              <span class="font-bold text-xl text-neon-purple">*</span>
+            </div>
+            <p class="text-gray-400 text-sm">Max <span class="font-semibold text-[18px]">50</span> characters</p>
+          </div>
+          <input 
+            type="text" 
+            id="post-title" 
+            name="title" 
+            class="w-full bg-[#181818] text-white rounded-md p-3 border-1 border-transparent focus:border-neon-purple focus:outline-none"
+            placeholder="An awesome and catchy title"
+            maxlength="50" 
+            required
+          >
+          <p id="post-title-error-p" class="text-red-400"></p>
+        </div>
+
+        <!-- Short description for bloglist -->
+        <div class="flex flex-col gap-y-2">
+          <div class="flex justify-between items-baseline">
+            <div class="flex gap-x-[1rem]">
+              <label for="post-description" class="font-semibold text-lg text-white">Short Description</label>
+              <span class="font-bold text-xl text-neon-purple">*</span>
+            </div>
+            <p class="text-gray-400 text-sm">Max <span class="font-semibold text-[18px]">180</span> characters</p>
+          </div>
+          <textarea 
+            id="post-description"
+            name="description" 
+            class="w-full bg-[#181818] text-white rounded-md p-3 border-1 border-transparent focus:border-neon-purple focus:outline-none resize-y"
+            placeholder="A short and compelling summary for the blog list page." 
+            rows="3"
+            maxlength="180" 
+            required
+          ></textarea>
+          <p id="post-description-error-p" class="text-red-400"></p>
+        </div>
+
+        <!-- Blog content -->
+        <div class="flex flex-col gap-y-2">
+          <div class="flex gap-x-[1rem]">
+            <label for="post-content" class="font-semibold text-lg text-white">Blog Content</label>
+            <span class="font-bold text-xl text-neon-purple">*</span>
+          </div>
+          <textarea 
+            id="post-content"
+            name="content" 
+            class="w-full bg-[#181818] text-white rounded-md p-3 border-1 border-transparent focus:border-neon-purple focus:outline-none resize-y"
+            placeholder="Write your full blog post here using Markdown..."
+            rows="15"
+            required
+          ></textarea>
+          <p id="post-content-error-p" class="text-red-400"></p>
+        </div>
+
+
+        <button 
+          type="submit" 
+          class="mt-5 w-full bg-mono-neon-purple text-white font-bold text-lg p-3 rounded-md border border-transparent focus:border-my-white focus:outline-none transition-brightness hover:brightness-80"
+        >
+          Post
+        </button>
+      </form>
+    </div>
+  </main>
+  <footer class="w-full bg-my-black-300 border-t-1 border-my-black-100">
+    <div class="flex flex-col items-center py-[40px] px-5 gap-y-[30px]">
+
+      <!-- Identity -->
+      <div class="flex flex-col items-center gap-y-[1rem]">
+        <img src="./imgs/alien.png" width="45" height="40">
+        <p class="text-[20px] font-roboto-mono font-bold flex gap-x-[1rem]">
+          <span class="text-my-white">Dango</span><span class="text-my-black-100">Dev</span>
+        </p>
+        </div>
+
+      <!-- Nav -->
+      <div class="flex justify-center items-center gap-6 flex-wrap">
+
+        <!-- Socials -->
+        <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
+          <i class="fa-brands fa-facebook-f fa-xl"></i>
+        </a>
+        <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
+          <i class="fa-brands fa-instagram fa-xl"></i>
+        </a>
+        <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
+          <i class="fa-brands fa-youtube fa-xl"></i>
+        </a>
+        <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
+          <i class="fa-brands fa-twitter fa-xl"></i>
+        </a>
+
+      </div>
+    </div>
+    <div class="bg-my-black-250 w-full px-5 py-[5px]">
+      <p class="text-my-light-gray text-[0.8rem]">Copyright ©2025 <a class="text-neon-purple" href="https://github.com/CodingDango" target="_blank">DangoDev</a></p>
+    </div>
+  </footer>
+</body>
+</html>
