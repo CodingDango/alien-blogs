@@ -4,15 +4,16 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 module.exports = {
   content: [
     './docs/', 
-    './my_blog/templates/', 
+    './my_blog/templates/**/*.html', 
+  ],
+
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/typography"),
   ],
 
   theme: {
     extend: {
-      plugins: [
-        require("@tailwindcss/line-clamp")
-      ],
-
       spacing: {
         'header': '3.7rem'
       },

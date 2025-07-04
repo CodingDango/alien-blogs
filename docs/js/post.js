@@ -1,82 +1,86 @@
-function verifyPostForm(fieldIDs, fieldConstraints)
-{   
-    // Keys are the id of the html inputs
-    // reason is invalid can be 'empty' or 'max-len' or 'none'
-    let fieldStatuses = {
-      [fieldIDs[0]] : {
-        "label" : "Title",
-        "status": {
-          "isValid" : false,
-          "reasonIsInvalid" : "empty"
-        }
-      },
-      
-      [fieldIDs[1]] : {
-        "label" : "Short description",
-        "status": {
-          "isValid" : false,
-          "reasonIsInvalid" : "empty"
-        },
-      },
-      
-      [fieldIDs[2]] : {
-        "label" : "Blog content",
-        "status": {
-          "isValid" : false,
-          "reasonIsInvalid" : "empty"
-        }
-      },
+class PostField 
+{
+    constructor(htmlID, fieldName, maxContentLength)
+    {
+        this.htmlID = htmlID;
+        this.fieldName = fieldName;
+        this.invalidReason = "none"; // Meaning it is valid.
+        this.constraints = {
+          "maxContentLength" : maxContentLength
+        };
     }
+};
 
-    const postForm = document.getElementById('post-form')
+function identifyInvalidReasonForField(postFieldElement, postField)
+{
+    postFieldElement.invalidReason = "none";
 
-    // If post form is gone return as all fields are empty
-    if (!postForm) {
-        return fieldStatuses
-    }
-
-    for (const keyID in fieldStatuses) {
-        const field = document.getElementById(keyID)
-
-        // Treat as if empty input.
-        if (!field)
-            continue;
-
-        // Check content
-        const fieldContent = field.value.trim()
+    // If element is missing, treat it as empty input.  
+    if (!postFieldElement)
+        postField.invalidReason = "empty";
         
-        if (fieldContent.length == 0) 
-            continue;
+    // Check content
+    const fieldContent = postFieldElement.value.trim()
+    
+    if (fieldContent.length == 0) 
+        postField.invalidReason = "empty";
 
-        // If fieldContent is greater than max len
-        // Also, if fieldconstraint max len is negative one, ignore.
-        if (fieldConstraints[keyID]['max-len'] != -1 && fieldContent.length > fieldConstraints[keyID]['max-len'])
-        {
-          fieldStatuses[keyID]['status']['reasonIsInvalid'] = 'max-len'
-          continue;
-        }
-        
-        // Valid input!
-        fieldStatuses[keyID]['status']['isValid'] = true;
-        fieldStatuses[keyID]['status']['reasonIsInvalid'] = 'none';
-    }
-
-    return fieldStatuses
+    else if (fieldContent.length > postField.constraints["maxContentLength"])
+        postField.reasonIsInvalid = "characterOverflow";
 }
 
-function areAllFieldStatusesValid(fieldStatuses)
+function verifyPostForm(postFields)
+{   
+    for (const field of postFields) 
+    {
+        const fieldElement = document.getElementById(field.htmlID);
+
+        // Find an invalid msg if there is one.
+        identifyInvalidReasonForField(fieldElement, field);
+
+        if (field.invalidReason === "none")
+            resetElementErrState(fieldElement);
+        else
+        {
+            const errorMsg = getErrorMsg(field);
+            enableElementErrState(fieldElement, errorMsg)
+        }
+    }
+}
+
+function getErrorMsg(postField)
 {
-    for (const fieldID in fieldStatuses)
+    if (postField.invalidReason === "none")
+        return '';
+
+    if (postField.invalidReason === "empty")
+        return postField.fieldName + " cannot not be empty."
+
+    // character overflow.
+    const fieldElement = document.getElementById(postField.htmlID);
+    let contentLength = 0;
+
+    if (fieldElement)
+        contentLength = fieldElement.value.trim().length;
+
+    return inputName + " can only be " 
+      + postField.constraints["maxContentLength"] + " long."
+      + " character count is " + contentLength;
+}
+
+function areAllFieldsValid(postFields)
+{
+    for (const field of postFields)
     {
         // If there is an error.
-        if (!fieldStatuses[fieldID]['status']['isValid'])
+        if (field.invalidReason != "none")
             return false;
     }
 
     return true;
 }
 
-function setFieldErrorState(field, error_msg)
+function enableElementErrState(field, errorMsg)
 {
     // This is the field
     if (!field.classList.contains('border-red-400'))
@@ -89,47 +93,11 @@ function setFieldErrorState(field, error_msg)
         field.classList.remove('border-transparent')
 
     // Get the error message, and give it this error message
-    field.nextElementSibling.textContent = error_msg;
+    field.nextElementSibling.textContent = errorMsg;
 }
 
-function handleFormErrorState(fieldConstraints, fieldStatuses)
-{ 
-    for (const fieldID in fieldStatuses)
-    {
-        const invalidReason = fieldStatuses[fieldID]['status']['reasonIsInvalid'];
-        const maxContentLength = fieldConstraints[fieldID]['max-len'];
-        const inputName = fieldStatuses[fieldID]['label']
-        const field = document.getElementById(fieldID);
 
-        // Unhelpful error message, i know.
-        let errorMsg = 'Invalid input.';
-
-        if (!fieldStatuses[fieldID]['status']['isValid'])
-        {
-            if (invalidReason === 'empty' || !field)
-            {
-                errorMsg = inputName + " cannot not be empty."
-            }
-
-            else if (invalidReason === 'max-len')
-            { 
-                let contentLength = field.value.trim().length;
-
-                errorMsg = inputName + " can only be " 
-                  + maxContentLength + "long. "
-                  + "character count is " + contentLength;
-            }
-
-            setFieldErrorState(field, errorMsg);
-        }
-        
-        // If its valid.
-        else
-          resetFieldState(field);
-    }
-}
-
-function resetFieldState(field)
+function resetElementErrState(field)
 {
     // This is the field
     if (field.classList.contains('border-red-400'))
@@ -147,38 +115,18 @@ function resetFieldState(field)
 
 function onPostFormSubmit(event)
 {
-    const BLOG_TITLE_INPUT_ID = "post-title"
-    const BLOG_DESCRIPTION_INPUT_ID = "post-description"
-    const BLOG_CONTENT_INPUT_ID = "post-content"
+    let postFields = [
+      new PostField("post-title", "Title", 50),
+      new PostField("post-description", "Description", 100),
+      new PostField("post-content", "Content", -1),
+    ];
+    
+    verifyPostForm(postFields);
 
-    const fieldIDs = [
-      BLOG_TITLE_INPUT_ID, 
-      BLOG_DESCRIPTION_INPUT_ID, 
-      BLOG_CONTENT_INPUT_ID
-    ]
-      
-    const fieldConstraints = {
-        [BLOG_TITLE_INPUT_ID] : {
-          "max-len" : 50
-        },
-
-        [BLOG_DESCRIPTION_INPUT_ID] : {
-          "max-len" : 180
-        },
-
-        [BLOG_CONTENT_INPUT_ID] : {
-          "max-len" : -1
-        }
-    }
-
-    const fieldStatuses = verifyPostForm(fieldIDs, fieldConstraints);
-
-    // If everything is valid,
-    if (areAllFieldStatusesValid(fieldStatuses))
+    if (areAllFieldsValid(postFields))
         return;
     
     event.preventDefault();
-    handleFormErrorState(fieldConstraints, fieldStatuses);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

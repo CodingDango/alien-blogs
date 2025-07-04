@@ -1,12 +1,10 @@
 {
   "scripts": {
-    "watch": "npx @tailwindcss/cli -i ./docs/css/input.css -o ./docs/css/output.css --watch"
-  },
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.10",
-    "tailwindcss": "^4.1.10"
+    "watch": "npx tailwindcss -i ./my_blog/static/css/input.css -o ./my_blog/static/css/output.css -c tailwind.config.js --watch"
   },
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4"
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.13",
+    "tailwindcss": "^3.4.4"
   }
 }
