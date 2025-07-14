@@ -15,7 +15,7 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        'header': '3.7rem'
+        'header': '4rem'
       },
       
       colors: {
@@ -28,6 +28,7 @@ module.exports = {
         'my-orange'     : '#FE7743',
         'neon-purple'   : '#9370DB',
         'mono-neon-purple'   : '#7447D1',
+        'dark-neon-purple'   : '#371C6F',
         'my-light-gray' : '#99A1AF',
         'my-lime' : '#B8DB70',
         'my-dark-grey' : '#18181b'

@@ -1,0 +1,238 @@
+{% load static %}
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS -->
+  <link href="{% static 'css/output.css' %}" rel="stylesheet">
+  <script src="{% static 'js/menu.js' %}"></script>
+
+  <!-- Fontawesome -->
+  <script src="https://kit.fontawesome.com/42a5858d3a.js" crossorigin="anonymous"></script>
+  {% block link %}
+  {% endblock %}
+
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="sticky top-0 left-0 z-30 w-full">
+      <div class="px-5 bg-my-black-300 text-my-white">
+        <div class="max-w-7xl py-[10px] flex justify-between items-center mx-auto">
+          <nav class="relative w-full flex justify-between items-center">
+            <a href="/home">
+              <div class="text-lg font-roboto-mono">
+                <div class="flex gap-3 items-center">
+                  <div>
+                    <img src="{% static 'imgs/ufo.svg' %}" width="35" height="35">
+                  </div>
+                  <div>Outsider Blogs</div>
+                </div>
+              </div>
+            </a>
+            <div class="invisible md:visible">
+
+              <!-- Burger button -->
+              <button class="mt-1 visible md:invisible" id="burgerMenuButton" onclick="showHamburgerMenu()">
+                <div id="burgerMenuBg" class="bg-burger-icon bg-no-repeat bg-contain bg-center w-[35px] h-[30px]"></div>
+              </button>
+              <ul>
+
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-x-[24px]">
+                  <li><a class="text-gray-300" href="/home">Home</a></li>
+                  <li><a class="text-gray-300" href="/blogs">Blogs</a></li>
+                  <li><a class="text-gray-300" href="/blogs/post">Post</a></li>
+                  <li><a class="text-gray-300" href="/about">About</a></li>
+                </div>
+
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 flex gap-x-[16px] items-center">
+                  <li>
+                    <a class="inline-block" href="/sign-up">
+                      <div class="text-center text-gray-300 px-[1rem] py-[8px] rounded-md">Sign Up</div>
+                    </a>
+                  </li>
+              
+                  <li>
+                    <a class="inline-block" href="/login">
+                      <div class="text-center text-my-white px-[1rem] py-[8px] border rounded-md">Log In</div>
+                    </a>
+                  </li>
+                </div>
+
+              </ul>
+
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <nav id="mobile-menu"
+          class="hidden md:hidden fixed right-0 w-full max-w-[250px] border-l-[1px] border-zinc-700 h-[calc(100vh-theme(spacing.header))] bg-my-black-300 z-50" >
+
+          <ul class="flex flex-col p-[20px] p-[40px] gap-y-[1rem]">
+            <li><a class="text-gray-300" href="/home">Home</a></li>
+            <li><a class="text-gray-300" href="/blogs">Blogs</a></li>
+            <li><a class="text-gray-300" href="/blogs/post">Post</a></li>
+            <li><a class="text-gray-300" href="/about">About</a></li>
+
+          <div class="mt-[0.5rem] mb-[0.5rem] w-full border-t-[1px] border-gray-600 h-1"></div>
+
+          <div class="flex flex-col gap-[1rem]">
+            <li>
+              <a class="inline-block" href="/sign-up">
+                <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] bg-neon-purple rounded-md">Sign Up</div>
+              </a>
+            </li>
+        
+            <li>
+              <a class="inline-block" href="/login">
+                <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] border rounded-md">Log In</div>
+              </a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="min-h-[calc(100vh-theme(spacing.header))] pb-[80px] bg-my-black-300">
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-my-black-300">
+
+      <!-- Subscribe to blog -->
+      <!-- 1. The container is a grid. It controls the background and overflow. -->
+      <div class="w-full grid items-center bg-mono-neon-purple/70 py-24 overflow-hidden">
+        
+          <div class="w-full h-full relative max-w-7xl">
+            <img class="absolute -bottom-[200px] left-16 invert brightness-0 opacity-50" src="{% static 'imgs/ufo2.png'%}">
+          </div>
+
+          <div class="relative z-10 col-start-1 row-start-1 text-center p-5">
+
+            <div class="max-w-xl w-full mx-auto">
+              <h2 class="text-4xl text-my-white">Stay Updated On Our Blogs</h2>
+              <form class="mt-12 grid grid-cols-[1fr_auto]">
+                <div class="col-start-1">
+                  <input 
+                    placeholder="example@gmail.com"
+                    class="rounded-l-md bg-zinc-900 py-5 px-3 w-full focus:outline-none border border-transparent focus:border-emerald-600 text-my-light-gray" 
+                    type="email">
+                </div>
+
+                <div class="col-start-2">
+                  <button class="text-lg w-full h-full bg-emerald-500 py-3 px-10 text-white font-semibold rounded-r-md">Subscribe</button>
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+
+      <div class="py-[60px] bg-zinc-900 w-full">
+        <div class="flex flex-col gap-y-10">
+          <!-- Logo -->
+          <div>
+            <a href="/home">
+              <div class="flex gap-x-3 items-center justify-center">
+                <div>
+                  <img src="{% static 'imgs/ufo.svg' %}" width="60" height="60">
+                </div>
+                <div class="font-semibold text-xl font-roboto-mono text-white">Outsider Blogs</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Nav links -->
+          <nav>
+            <ul class="flex gap-x-16 gap-y-10 text-gray-300 justify-center items-center">
+              <li><a href="/home">Home</a></li>
+              <li><a href="/blogs">Blogs</a></li>
+              <li><a href="/about">About Us</a></li>
+            </ul>
+          </nav>
+          
+          <!-- Socials -->
+          <div class="flex flex-col gap-y-5 px-5">
+            <p class="font-semibold text-center text-white text-lg">Stay in touch</p>
+            <ul class="text-green-500 gap-x-5 flex justify-center items-center">
+              <li>
+              <a href="#" class="text-blue-300 w-10 h-10 rounded-full bg-my-black-300 px-6 py-6 flex items-center justify-center transition-transform ease-in-out duration-100 hover:-translate-y-1">
+                <i class="fa-brands fa-facebook-f fa-xl"></i>
+              </a>
+              </li>
+              <li>
+                <a href="#" class="text-rose-400 w-10 h-10 rounded-full bg-my-black-300 px-6 py-6 flex items-center justify-center transition-transform ease-in-out duration-100 hover:-translate-y-1">
+                  <i class="fa-brands fa-instagram fa-xl"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-red-500 w-10 h-10 rounded-full bg-my-black-300 px-6 py-6 flex items-center justify-center transition-transform ease-in-out duration-100 hover:-translate-y-1">
+                  <i class="fa-brands fa-youtube fa-xl"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-sky-500 w-10 h-10 rounded-full bg-my-black-300 px-6 py-6 flex items-center justify-center transition-transform ease-in-out duration-100 hover:-translate-y-1">
+                  <i class="fa-brands fa-twitter fa-xl"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+      
+
+    </footer>
+</body>
+
+
+
+      <!-- <div class="z-20 flex flex-col items-center py-[40px] px-5 gap-y-[30px]">
+         Identity 
+        <div class="flex flex-col items-center gap-y-[1rem]">
+          <img src="{% static 'imgs/alien.png' %}" width="45" height="40">
+          <p class="text-[20px] font-roboto-mono font-bold flex gap-x-[1rem]">
+            <span class="text-my-white">Dango</span><span class="text-my-black-100">Dev</span>
+          </p>
+        </div>
+
+         Nav 
+        <div class="flex justify-center items-center gap-6 flex-wrap">
+
+           Socials 
+          <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
+            <i class="fa-brands fa-facebook-f fa-xl"></i>
+          </a>
+          <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
+            <i class="fa-brands fa-instagram fa-xl"></i>
+          </a>
+          <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
+            <i class="fa-brands fa-youtube fa-xl"></i>
+          </a>
+          <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
+            <i class="fa-brands fa-twitter fa-xl"></i>
+          </a>
+
+        </div>
+      </div>
+      <div class="bg-zinc-900 w-full px-5 py-[5px]">
+        <p class="text-gray-300 text-[0.8rem]">Copyright ©2025 <a class="text-neon-purple" href="https://github.com/CodingDango" target="_blank">DangoDev</a></p>
+      </div> -->
