@@ -29,52 +29,74 @@
 <body>
 
     <!-- Header -->
-    <header class="sticky top-0 left-0 z-30 w-full">
-      <div class="px-5 bg-my-black-300 text-my-white">
-        <div class="max-w-7xl py-[10px] flex justify-between items-center mx-auto">
-          <nav class="relative w-full flex justify-between items-center">
-            <a href="/home">
-              <div class="text-lg font-roboto-mono">
-                <div class="flex gap-3 items-center">
-                  <div>
-                    <img src="{% static 'imgs/ufo.svg' %}" width="35" height="35">
-                  </div>
-                  <div>Outsider Blogs</div>
+    <header class="sticky top-0 left-0 z-30 w-full bg-my-black-300">
+
+      <div class="px-5 py-[10px] text-my-white">
+        <div class="w-full max-w-7xl mx-auto">
+
+          <!-- Desktop nav -->
+          <nav class="w-full flex justify-between items-center">
+
+            <!-- Left side -->
+            <div class="flex gap-x-10 items-center">
+              <!-- Logo -->
+              <a href="/home">
+                <div>
+                  <img src="{% static 'imgs/ufo.svg' %}" width="40" height="40">
                 </div>
-              </div>
-            </a>
-            <div class="invisible md:visible">
-
-              <!-- Burger button -->
-              <button class="mt-1 visible md:invisible" id="burgerMenuButton" onclick="showHamburgerMenu()">
-                <div id="burgerMenuBg" class="bg-burger-icon bg-no-repeat bg-contain bg-center w-[35px] h-[30px]"></div>
-              </button>
-              <ul>
-
-                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-x-[24px]">
-                  <li><a class="text-gray-300" href="/home">Home</a></li>
-                  <li><a class="text-gray-300" href="/blogs">Blogs</a></li>
-                  <li><a class="text-gray-300" href="/blogs/post">Post</a></li>
-                  <li><a class="text-gray-300" href="/about">About</a></li>
-                </div>
-
-                <div class="absolute right-0 top-1/2 -translate-y-1/2 flex gap-x-[16px] items-center">
-                  <li>
-                    <a class="inline-block" href="/sign-up">
-                      <div class="text-center text-gray-300 px-[1rem] py-[8px] rounded-md">Sign Up</div>
-                    </a>
-                  </li>
+              </a>
               
-                  <li>
-                    <a class="inline-block" href="/login">
-                      <div class="text-center text-my-white px-[1rem] py-[8px] border rounded-md">Log In</div>
-                    </a>
-                  </li>
-                </div>
-
+              <!-- Links -->
+              <ul class="flex gap-x-7 items-center">
+                <li>
+                  <a href="/blogs">
+                    <span class="px-3 py-2 bg-mono-neon-purple/30 rounded-md">
+                      Blogs
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/home">
+                    <span class="text-gray-300 px-3 py-2 rounded-md bg-transparent hover:bg-white/10">
+                      Home
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/about-us">
+                    <span class="text-gray-300 px-3 py-2 rounded-md bg-transparent hover:bg-white/10">
+                      About Us
+                    </span>
+                  </a>
+                </li>
               </ul>
+            </div>
+
+            <!-- Right Side -->
+            <div class="flex gap-x-7 items-center">
+
+              <!-- Create blog post admin only -->
+              <a href="/blogs/post">
+                <div class="flex gap-x-3 px-3 py-2 bg-mono-neon-purple/70 rounded-md hover:bg-mono-neon-purple/50">
+                  <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
+                  <span class="font-semibold">Create Blog</span>
+                </div>
+              </a>
+
+              <!-- A Notification bell dropdown menuthat will notify about recent blog posts-->
+              <button class="hover:cursor">
+                <div class="flex justify-center items-center'">
+                  <i class="text-gray-400 fa-regular fa-bell fa-xl"></i>
+                </div>
+              </button>
+
+              <!-- Profile picture -->
+              <div class="w-[35px] h-[35px]">
+                <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
+              </div>
 
             </div>
+
           </nav>
         </div>
       </div>
