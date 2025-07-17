@@ -29,105 +29,163 @@
 <body>
 
     <!-- Header -->
-    <header class="sticky top-0 left-0 z-30 w-full bg-my-black-300">
+    <header class="sticky top-0 left-0 z-30 w-full bg-my-black-300 overflow-hidden">
 
-      <div class="px-5 py-[10px] text-my-white">
+      <div class="py-[10px] text-my-white">
         <div class="w-full max-w-7xl mx-auto">
 
-          <!-- Desktop nav -->
-          <nav class="w-full flex justify-between items-center">
+          <nav class="w-full px-5">
 
-            <!-- Left side -->
-            <div class="flex gap-x-10 items-center">
-              <!-- Logo -->
-              <a href="/home">
-                <div>
-                  <img src="{% static 'imgs/ufo.svg' %}" width="40" height="40">
-                </div>
-              </a>
-              
-              <!-- Links -->
-              <ul class="flex gap-x-7 items-center">
-                <li>
-                  <a href="/blogs">
-                    <span class="px-3 py-2 bg-mono-neon-purple/30 rounded-md">
-                      Blogs
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/home">
-                    <span class="text-gray-300 px-3 py-2 rounded-md bg-transparent hover:bg-white/10">
-                      Home
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/about-us">
-                    <span class="text-gray-300 px-3 py-2 rounded-md bg-transparent hover:bg-white/10">
-                      About Us
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Right Side -->
-            <div class="flex gap-x-7 items-center">
-
-              <!-- Create blog post admin only -->
-              <a href="/blogs/post">
-                <div class="flex gap-x-3 px-3 py-2 bg-mono-neon-purple/70 rounded-md hover:bg-mono-neon-purple/50">
-                  <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
-                  <span class="font-semibold">Create Blog</span>
-                </div>
-              </a>
-
-              <!-- A Notification bell dropdown menuthat will notify about recent blog posts-->
-              <button class="hover:cursor">
-                <div class="flex justify-center items-center'">
-                  <i class="text-gray-400 fa-regular fa-bell fa-xl"></i>
-                </div>
-              </button>
-
-              <!-- Profile picture -->
-              <div class="w-[35px] h-[35px]">
-                <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
+            <!-- Desktop mode -->
+            <div class="hidden md:flex w-full justify-between items-center">
+              <!-- Left side -->
+              <div class="flex gap-x-5 items-center">
+                <!-- Logo -->
+                <a href="/home">
+                  <div>
+                    <img src="{% static 'imgs/ufo.svg' %}" width="40" height="40">
+                  </div>
+                </a>
+                
+                <!-- Links -->
+                <ul class="flex gap-x-5 items-center">
+                  <li>
+                    <a class="p-2 w-10 h-4 bg-mono-neon-purple/30 rounded-md hover:bg-mono-neon-purple/50" href="/blogs">
+                        Blogs
+                    </a>
+                  </li>
+                  <li>
+                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent hover:bg-white/5" href="/home">
+                        Home
+                    </a>
+                  </li>
+                  <li>
+                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent hover:bg-white/5" href="/about-us">
+                        About Us
+                    </a>
+                  </li>
+                </ul>
               </div>
 
+              <!-- Right Side -->
+              <div class="flex gap-x-5 items-center">
+
+                <!-- Create blog post admin only -->
+                <a href="/blogs/post">
+                  <div class="flex gap-x-3 px-3 py-2 bg-mono-neon-purple/60 rounded-md hover:bg-mono-neon-purple/50">
+                    <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
+                    <span class="font-semibold">Create Blog</span>
+                  </div>
+                </a>
+
+                <!-- A Notification bell dropdown menuthat will notify about recent blog posts-->
+                <button>
+                  <div class="flex justify-center items-center">
+                    <i class="text-gray-400 fa-regular fa-bell fa-xl hover:brightness-125"></i>
+                  </div>
+                </button>
+
+                <!-- Profile picture -->
+                <div class="w-[35px] h-[35px]">
+                  <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
+                </div>  
+
+                <!-- Search Button -->
+                <button>
+                  <span class="flex justify-center items-center">
+                    <i class="text-gray-400 fa-solid fa-magnifying-glass fa-lg hover:brightness-125"></i>
+                  </span>
+                </button>
+                
+              </div>
             </div>
 
+            <!-- Mobile mode -->
+            <div class="flex flex-col gap-7 md:hidden w-full h-full">
+      
+              <!-- Non hamburger menu mode -->
+              <div class="w-full flex justify-between items-center">
+
+                <!-- Left side -->
+                <div class="flex gap-x-5 items-center">
+
+                  <!-- Hamburger button -->
+                  <button class="w-7 h-7" id="hamburgerMenuBtn" onclick="showHamburgerMenu()">
+                    <span class="flex items-center justify-center">
+                      <i class="fa-solid fa-bars fa-lg"></i>
+                    </span>
+                  </button>
+                  <a href="/home">
+                    <div>
+                      <img src="{% static 'imgs/ufo.svg' %}" width="40" height="40">
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Right Side -->
+                <div class="flex gap-x-5 items-center">
+
+                  <a href="/blogs/post">
+                    <div class="flex gap-x-3 px-3 py-2 bg-mono-neon-purple/70 rounded-md hover:bg-mono-neon-purple/50">
+                      <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
+                      <span class="font-semibold">Create Blog</span>
+                    </div>
+                  </a>
+
+                  <!-- Profile picture -->
+                  <div class="w-[35px] h-[35px]">
+                    <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hamburger Menu Mode -->
+              <div id="hamburgerMenuDiv" class="h-[calc(100vh-(theme(spacing.header)+30px))] hidden overflow-hidden w-full bg-my-black-300">
+
+                <!-- Search -->
+                <div class="w-full mb-10 flex">
+
+                  <input 
+                    class="w-full h-14 px-4 bg-zinc-900 placeholder-zinc-500 text-white outline-none border border-transparent focus:border-blue-500 rounded-l-md"
+                    placeholder="Search blog"
+                  >
+
+                  <button class="w-20 h-14 flex justify-center items-center bg-emerald-500 hover:bg-emerald-600 rounded-r-md">
+                    <i class="text-white fa-solid fa-magnifying-glass fa-lg"></i>
+                  </button>
+
+                </div>
+
+                <ul class="w-full flex flex-col gap-y-3">
+                  <li>
+                    <a href="#" class="w-full">
+                      <div class="text-lg w-full p-3 text-mono-neon-purple bg-dark-neon-purple/20 hover:bg-dark-neon-purple/30 rounded-md">
+                        Blogs
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="w-full">
+                      <div class="text-lg text-gray-300 p-3 rounded-md bg-transparent hover:bg-white/5">
+                        Home
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="w-full">
+                      <div class="text-lg text-gray-300 p-3 rounded-md bg-transparent hover:bg-white/5">
+                        About Us
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </nav>
         </div>
       </div>
-
-      <!-- Hamburger Menu -->
-      <nav id="mobile-menu"
-          class="hidden md:hidden fixed right-0 w-full max-w-[250px] border-l-[1px] border-zinc-700 h-[calc(100vh-theme(spacing.header))] bg-my-black-300 z-50" >
-
-          <ul class="flex flex-col p-[20px] p-[40px] gap-y-[1rem]">
-            <li><a class="text-gray-300" href="/home">Home</a></li>
-            <li><a class="text-gray-300" href="/blogs">Blogs</a></li>
-            <li><a class="text-gray-300" href="/blogs/post">Post</a></li>
-            <li><a class="text-gray-300" href="/about">About</a></li>
-
-          <div class="mt-[0.5rem] mb-[0.5rem] w-full border-t-[1px] border-gray-600 h-1"></div>
-
-          <div class="flex flex-col gap-[1rem]">
-            <li>
-              <a class="inline-block" href="/sign-up">
-                <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] bg-neon-purple rounded-md">Sign Up</div>
-              </a>
-            </li>
-        
-            <li>
-              <a class="inline-block" href="/login">
-                <div class="w-[6rem] text-center text-my-white px-[1rem] py-[8px] border rounded-md">Log In</div>
-              </a>
-            </li>
-          </div>
-        </ul>
-      </nav>
     </header>
 
     <!-- Main content -->
@@ -155,19 +213,19 @@
                 <div class="col-start-1">
                   <input 
                     placeholder="example@gmail.com"
-                    class="rounded-l-md bg-zinc-900 py-5 px-3 w-full focus:outline-none border border-transparent focus:border-emerald-600 text-my-light-gray" 
+                    class="rounded-l-md bg-zinc-900 py-5 px-3 w-full focus:outline-none border-2 border-transparent focus:border-emerald-600 text-my-light-gray" 
                     type="email">
                 </div>
 
                 <div class="col-start-2">
-                  <button class="text-lg w-full h-full bg-emerald-500 py-3 px-10 text-white font-semibold rounded-r-md">Subscribe</button>
+                  <button class="text-lg w-full h-full bg-emerald-500 py-3 px-4 text-white font-semibold rounded-r-md">Subscribe</button>
                 </div>
               </form>
             </div>
           </div>
       </div>
 
-      <div class="py-[60px] bg-zinc-900 w-full">
+      <div class="pt-[50px] pb-[15px] bg-zinc-900 w-full">
         <div class="flex flex-col gap-y-10">
           <!-- Logo -->
           <div>
@@ -184,8 +242,8 @@
           <!-- Nav links -->
           <nav>
             <ul class="flex gap-x-16 gap-y-10 text-gray-300 justify-center items-center">
-              <li><a href="/home">Home</a></li>
-              <li><a href="/blogs">Blogs</a></li>
+              <li><a href="/contact">Home</a></li>
+              <li><a href="/contact">Contact Us</a></li>
               <li><a href="/about">About Us</a></li>
             </ul>
           </nav>
@@ -215,6 +273,11 @@
                 </a>
               </li>
             </ul>
+          </div>
+
+          <!-- Copyright -->
+          <div class="text-center">
+            <p class="text-sm text-gray-400">Copyright© 2025 Outsider Blogs</p>
           </div>
 
         </div>

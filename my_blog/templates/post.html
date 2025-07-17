@@ -43,7 +43,7 @@
                 type="text" 
                 id="post-title" 
                 name="title" 
-                class="resize-none w-full bg-zinc-900 text-white rounded-md p-3 border border-transparent focus:border-zinc-600 focus:outline-none"
+                class="placeholder-zinc-500 resize-none w-full bg-zinc-900 text-white rounded-md p-3 border border-transparent focus:border-my-lime focus:outline-none"
                 placeholder="An awesome and catchy title"
                 maxlength={{ pageData.formData.post_title.maxLen }} 
                 rows="3"
@@ -65,7 +65,7 @@
                 style="resize: none;"
                 id="post-description"
                 name="description" 
-                class="w-full bg-zinc-900 text-white rounded-md p-3 border border-transparent focus:border-zinc-600 focus:outline-none resize-y"
+                class="placeholder-zinc-500 w-full bg-zinc-900 text-white rounded-md p-3 border border-transparent focus:border-my-lime focus:outline-none resize-y"
                 placeholder="A short and compelling summary for the blog list page." 
                 rows="3"
                 maxlength={{ pageData.formData.post_description.maxLen }}
@@ -97,7 +97,7 @@
                 <textarea 
                   id="post-content"
                   name="content" 
-                  class="resize-none h-full p-3 col-start-1 col-end-1 row-start-1 row-end-1 w-full bg-zinc-900 text-white rounded-md border border-transparent focus:border-zinc-600 focus:outline-none"
+                  class="placeholder-zinc-500 resize-none h-full p-3 col-start-1 col-end-1 row-start-1 row-end-1 w-full bg-zinc-900 text-white rounded-md border border-transparent focus:border-my-lime focus:outline-none"
                   placeholder="Write your full blog post here using Markdown..."
                   rows="20"
                   maxlength="{{ pageData.formData.post_content.maxLen }}"
@@ -122,7 +122,7 @@
         <div class="grid grid-cols-2">
           <button 
             type="submit" 
-            class="col-start-2 col-end-2 w-full bg-mono-neon-purple text-white font-bold text-lg p-3 rounded-md border border-transparent focus:border-my-white focus:outline-none transition-brightness hover:brightness-80"
+            class="col-start-2 col-end-2 w-full bg-mono-neon-purple text-white font-bold text-lg p-3 rounded-md border-2 border-transparent focus:border-my-lime focus:outline-none hover:brightness-90"
           >Post</button>
         </div>
       </form>

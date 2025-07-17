@@ -1,11 +1,15 @@
 function showHamburgerMenu()
 {
-    const hamburgerMenuImg = document.getElementById("burgerMenuBg");
-    const mobileMenu = document.getElementById("mobile-menu");
+    const hamburgerMenuDiv = document.getElementById('hamburgerMenuDiv');
+    const hamburgerMenuBtn = document.getElementById('hamburgerMenuBtn');
 
     // Change the icon of the button
-    hamburgerMenuImg.classList.toggle("close")
-    hamburgerMenuImg.classList.toggle("bg-burger-icon");
-    hamburgerMenuImg.classList.toggle("bg-close-icon");
-    mobileMenu.classList.toggle("hidden")
+    hamburgerMenuBtn.querySelector('i').classList.toggle('fa-bars');
+    hamburgerMenuBtn.querySelector('i').classList.toggle('fa-xmark'); 
+    
+    // Make the hamburgerMenuDiv visible.
+    hamburgerMenuDiv.classList.toggle('hidden');
+
+    // Make body unscrollable
+    document.querySelector('body').classList.toggle('overflow-hidden');
 }

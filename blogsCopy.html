@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Blog List - Alien Blog
+{% endblock %}
+
+{% block content %}
+  <div class="bg-my-black-300 overflow-x-hidden min-h-[calc(100vh-3rem)] py-[80px] px-5">
+    <div class="max-w-7xl mx-auto flex flex-col gap-[48px]">
+
+      <!-- Featured Blog -->
+      <div class="border border-gray-600 grid md:grid-cols-2 items-center rounded-md gap-x-5">
+        <!-- Img -->
+        <div class="min-h-[300px] sm:max-h-none h-full rounded-md">
+          <img class="w-full h-full object-cover rounded-md" src="{% static 'imgs/placeholder.jpg' %}">
+        </div> 
+
+        <!-- content -->
+        <div class="px-5 py-5 flex flex-col gap-[32px]">
+
+          <div class="flex flex-col gap-[1rem]">
+            <div class="flex justify-between items-center">
+              <p class="font-bold text-my-lime">DangoDev</p>
+              <p class="font-bold text-my-light-gray">June 21, 2025</p>
+            </div>
+
+            <h1 class="text-my-white text-[40px]">Featured Blog Header</h1>
+            <p class="text-my-light-gray line-clamp-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione cupiditate numquam quam dolores fugiat ullam quae nam distinctio voluptatem voluptate, veritatis hic a iusto est, fugit esse excepturi harum sunt.</p>
+          </div>
+
+          <!-- Read more anchor tag -->
+          <a class="self-start" href="#">
+            <div class="flex items-center gap-x-[1rem]">
+              <div class="font-bold text-neon-purple">Read More</div>
+              <img src="{% static 'imgs/rightArrow.png' %}">
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Blog Section -->
+      <div>
+        <!-- Header -->
+        <div>
+          <h2 class="text-my-white text-[36px]">Our Recent Blogs</h2>
+          <p class="text-my-light-gray">Lorem Ipsum Outsider Blog List</p>
+        </div>
+
+        <!-- Blog list -->
+        <div class="mt-[2rem] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2rem]">
+          
+          {% for post in posts %}
+            <article class="w-full">
+              <div class="flex flex-col border border-gray-600 rounded-md gap-5">
+                <!-- Picture -->
+                <div class="bg-my-white h-[250px] rounded-t-md">
+                  <img class="w-full h-full object-cover rounded-t-md" src="{% static 'imgs/placeholder.jpg' %}">
+                </div>
+                <!-- Content -->
+                <div class="max-h-[300px] min-h-[300px] px-5 pb-5 flex flex-col gap-[1rem] flex-1">
+                  <div class="flex justify-between items-center">
+                    <p class="font-bold text-my-lime">DangoDev</p>
+                    <p class="font-bold text-my-light-gray">June 21, 2025</p>
+                  </div>
+                  <h1 class="text-my-white text-[28px] line-clamp-2">{{ post.title }}</h1>
+                  <p class="text-my-light-gray mb-[1rem] line-clamp-4">{{ post.description }}</p>
+                  <!-- Read more anchor tag -->
+                  <a class="mt-auto self-start" href="/blogs/{{ post.id }}">
+                    <div class="flex items-center gap-x-[1rem]">
+                      <div class="font-bold text-neon-purple">Read More</div>
+                      <img src="{% static 'imgs/rightArrow.png' %}">
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

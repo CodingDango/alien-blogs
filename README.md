@@ -1,19 +1,15 @@
 # Shit I Should Do
 
+## Header
+Implement the search pop up on desktop mode.
+
+
 ## Refine the footer subscribe
 
 - Make the ufo2 image go behin IM DONE WITH THIS. THIS IS GOOD ENOUGH
 - Make it white and transparent IM DONE WITH THIS. THIS IS GOOD ENOUGH
 - If the user is already logged in, just hide it, by default we will use their email.
 - If the user isn't logged in, it will be a simple email collection form.
-
-## Refine the header design.
-
-- Right now, I honestly do not like the navbar design. extremely boring.
-I need to add some interactivity and pictures icons before them.
-instead of the nav links being centered.
-I would like to remove the redundant Outsider Blogs text and just include the icon as the main selling point.
-Then, next to the logo, will be our
 
 ## Login or Sign Up pages
 

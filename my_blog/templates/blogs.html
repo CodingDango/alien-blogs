@@ -6,80 +6,110 @@
 {% endblock %}
 
 {% block content %}
-  <div class="bg-my-black-300 overflow-x-hidden min-h-[calc(100vh-3rem)] py-[80px] px-5">
-    <div class="max-w-7xl mx-auto flex flex-col gap-[48px]">
+  <div class="w-full flex flex-col items-center gap-y-10"> 
+    <!-- Featured Blog -->
+    <div class="grid w-full max-w-7xl min-h-[500px] max-h-[600px] grid-cols-1 grid-rows-1">
+      <!-- Big boi picture -->
+      <div class="col-start-1 row-start-1 grid">
+        <img 
+          src="{% static 'imgs/cat.jpg' %}" 
+          class="col-start-1 row-start-1 w-full min-h-[500px] max-h-[600px] object-cover rounded-b-md"
+        >
+        <div 
+          class="col-start-1 row-start-1 w-full h-full bg-black/30"
+        ></div>
+      </div>
 
-      <!-- Featured Blog -->
-      <div class="border border-gray-600 grid md:grid-cols-2 items-center rounded-md gap-x-5">
-        <!-- Img -->
-        <div class="min-h-[300px] sm:max-h-none h-full rounded-md">
-          <img class="w-full h-full object-cover rounded-md" src="{% static 'imgs/placeholder.jpg' %}">
-        </div> 
-
-        <!-- content -->
-        <div class="px-5 py-5 flex flex-col gap-[32px]">
-
-          <div class="flex flex-col gap-[1rem]">
-            <div class="flex justify-between items-center">
-              <p class="font-bold text-my-lime">DangoDev</p>
-              <p class="font-bold text-my-light-gray">June 21, 2025</p>
+      <div class="col-start-1 row-start-1 w-full h-full flex items-end px-5 py-10">
+        <div class="flex justify-between items-center w-full ">
+          <div class="max-w-sm">
+            <h2 class="text-4xl text-white">Exploring The Wonders Of Cute Alien Cats</h2>
+            <p class="text-gray-300 mt-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit ad omnis cum quod quidem sunt aperiam asperiores minima. Nobis, nesciunt.</p>
+          </div>
+          <div class="flex flex-col gap-y-2 justify-end">
+            <div class="flex gap-x-3 items-center">
+              <img 
+                src="{% static 'imgs/placeholder.jpg' %}"
+                class="w-[40px] h-[40px] rounded-full object-cover"  
+              >
+              <p class="text-white text-lg">Dango Dono</p>
             </div>
+            <p class="ml-auto text-gray-300 flex gap-x-3 items-center">
+              <span>30 Jan 2024</span>
+              <span class="text-xl">•</span>
+              <span>10 mins read</span>
+            </p>
+          </div>
+        </div>
+      </div>
 
-            <h1 class="text-my-white text-[40px]">Featured Blog Header</h1>
-            <p class="text-my-light-gray line-clamp-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione cupiditate numquam quam dolores fugiat ullam quae nam distinctio voluptatem voluptate, veritatis hic a iusto est, fugit esse excepturi harum sunt.</p>
+    </div>
+
+    <!-- Blog List --> 
+    <div class="max-w-7xl px-5 w-full">
+      
+      <!-- Blog header -->
+      <div>
+        <h2 class="text-4xl text-white">Blog</h2>
+        <p class="text-gray-400 mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium ullam sint debitis sequi.</p>
+      </div>
+
+      <!-- Blog controls -->
+      <div class="mt-6 w-full flex justify-between items-center text-white">
+        <div class="flex gap-x-5">
+          <button class="py-2 px-5 bg-white text-black rounded-md">All</button>
+          <button class="py-2 px-5 hover:bg-white/10 rounded-md">Theories</button>
+          <button class="py-2 px-5 hover:bg-white/10 rounded-md">Discoveries</button>
+          <button class="py-2 px-5 hover:bg-white/10 rounded-md">Interviews</button>  
+        </div>
+        <div class="gap-x-5 flex items-center">
+          <p class="text-gray-400">Sort by:</p>
+          <button class="py-2 px-5 border border-white/20 rounded-md">Newest</button>
+        </div>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="mt-8 grid grid-cols-3 w-full gap-x-5 gap-y-8">
+
+        <!-- Blog card -->
+        <article class="grid grid-rows-2 ">
+          <div class="col-start-1 row-start-1">
+            <img src="{% static 'imgs/placeholder.jpg' %}" class="object-cover min-h-[300px] max-h-[300px] w-full rounded-md">
           </div>
 
-          <!-- Read more anchor tag -->
-          <a class="self-start" href="#">
-            <div class="flex items-center gap-x-[1rem]">
-              <div class="font-bold text-neon-purple">Read More</div>
-              <img src="{% static 'imgs/rightArrow.png' %}">
+          <div class="col-start-1 row-start-2 flex flex-col gap-y-3 pt-2">
+            <!-- Date of creation -->
+            <p class="text-gray-400 flex gap-x-3 items-center">
+              <span>30 Jan 2024</span>
+              <span class="text-xl">•</span>
+              <span>10 mins read</span>
+            </p>
+
+            <!-- Blog content -->
+            <div class="flex flex-col gap-y-2">
+              <h3 
+                class="text-3xl text-white"
+              >Lorem ipsum dolor sit amet consectetur adipisicing.</h3>
+              
+              <!-- Blog description -->
+              <p class="text-gray-300">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi, facilis?</p>
             </div>
-          </a>
 
-        </div>
+            <!-- Author --> 
+            <div class="mt-2 flex gap-x-3 items-center">
+              <img 
+                src="{% static 'imgs/cat.jpg' %}"
+                class="w-[40px] h-[40px] object-cover rounded-full">
+              <p class="text-white">Dango Dev</p>
+            </div>
+
+          </div>
+        </article>
       </div>
 
-      <!-- Blog Section -->
-      <div>
-        <!-- Header -->
-        <div>
-          <h2 class="text-my-white text-[36px]">Our Recent Blogs</h2>
-          <p class="text-my-light-gray">Lorem Ipsum Outsider Blog List</p>
-        </div>
 
-        <!-- Blog list -->
-        <div class="mt-[2rem] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2rem]">
-          
-          {% for post in posts %}
-            <article class="w-full">
-              <div class="flex flex-col border border-gray-600 rounded-md gap-5">
-                <!-- Picture -->
-                <div class="bg-my-white h-[250px] rounded-t-md">
-                  <img class="w-full h-full object-cover rounded-t-md" src="{% static 'imgs/placeholder.jpg' %}">
-                </div>
-                <!-- Content -->
-                <div class="max-h-[300px] min-h-[300px] px-5 pb-5 flex flex-col gap-[1rem] flex-1">
-                  <div class="flex justify-between items-center">
-                    <p class="font-bold text-my-lime">DangoDev</p>
-                    <p class="font-bold text-my-light-gray">June 21, 2025</p>
-                  </div>
-                  <h1 class="text-my-white text-[28px] line-clamp-2">{{ post.title }}</h1>
-                  <p class="text-my-light-gray mb-[1rem] line-clamp-4">{{ post.description }}</p>
-                  <!-- Read more anchor tag -->
-                  <a class="mt-auto self-start" href="/blogs/{{ post.id }}">
-                    <div class="flex items-center gap-x-[1rem]">
-                      <div class="font-bold text-neon-purple">Read More</div>
-                      <img src="{% static 'imgs/rightArrow.png' %}">
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </article>
-          {% endfor %}
-        </div>
-
-      </div>
+      
     </div>
+
   </div>
 {% endblock %}
