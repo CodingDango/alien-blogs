@@ -6,96 +6,95 @@
 {% endblock %}
 
 {% block content %}
-  <div class="overflow-hidden">
-    <!-- Hero -->
-    <section class="overflow-hidden relative h-[calc(100vh-theme(spacing.header))] min-h-[950px]">
-      
-      <!-- Bg -->
-      <div class="-z-100">
-        <div class="absolute top-0 left-0 -z-100 ">
-          <img src="{% static 'imgs/heroBg.png' %}" class="min-h-[950px] object-cover w-screen h-[calc(100vh-theme(spacing.header))]">
+  <div class="min-h-[calc(100vh-theme(spacing.header))] pb-[100px] bg-my-black-300">
+    <div class="overflow-hidden">
+      <!-- Hero -->
+      <section class="overflow-hidden relative h-[calc(100vh-theme(spacing.header))] min-h-[950px]">
+        
+        <!-- Bg -->
+        <div class="-z-100">
+          <div class="absolute top-0 left-0 -z-100 ">
+            <img src="{% static 'imgs/heroBg.png' %}" class="min-h-[950px] object-cover w-screen h-[calc(100vh-theme(spacing.header))]">
+          </div>
+          <div class="-z-100 min-h-[950px] absolute w-screen h-[calc(100vh-theme(spacing.header))] bg-my-black-300 opacity-80"></div>
         </div>
-        <div class="-z-100 min-h-[950px] absolute w-screen h-[calc(100vh-theme(spacing.header))] bg-my-black-300 opacity-80"></div>
-      </div>
-      
-      <!-- Content -->
-      <div class="relative px-5 max-w-7xl mx-auto text-my-white flex w-full h-full">
+        
+        <!-- Content -->
+        <div class="relative px-5 max-w-7xl mx-auto text-my-white flex w-full h-full">
 
-        <div class="mt-[120px] w-full flex flex-col justify-start items-center">
-          <div class="flex flex-col gap-[30px] max-w-[600px]">
-            <h1 class="text-center font-roboto-mono text-5xl md:text-6xl">Astonishing Phenomenal Text</h1>
-            <p class="text-center text-my-light-gray text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque facilisis a enim vel fringilla. Morbi sed leo ac eros commodo iaculis. Cras eu massa mauris. Vestibulum quis quam mi.</p>
+          <div class="mt-[120px] w-full flex flex-col justify-start items-center">
+            <div class="flex flex-col gap-[30px] max-w-[600px]">
+              <h1 class="text-center font-roboto-mono text-5xl md:text-6xl">Astonishing Phenomenal Text</h1>
+              <p class="text-center text-my-light-gray text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque facilisis a enim vel fringilla. Morbi sed leo ac eros commodo iaculis. Cras eu massa mauris. Vestibulum quis quam mi.</p>
+            </div>
+
+            <div>
+              <a href="/blogs" class="font-semibold">
+                <div class="bg-mono-neon-purple inline-block mt-[50px] px-5 py-3 rounded-lg text-xl hover:bg-mono-neon-purple/85">Read Blogs</div>
+              </a>
+            </div>
+
+            <img class="absolute bottom-[-100px] left-1/2 -translate-x-1/2 z-100 w-[500px] h-[500px] object-cover" src="{% static 'imgs/bigUfo.png' %}">
+          </div>
+        </div>
+        
+      </section>
+
+      <!-- Testimonies -->
+
+      <section class="width-full bg-my-black-300 rounded-mx">
+
+        <div class="px-5 py-[80px] gap-[40px]">
+
+          <div class="flex flex-col justify-center items-center gap-y-[1.5rem]">
+            <h1 class="text-3xl md:text-4xl font-roboto-mono text-my-white text-center">Alien Testimonies</h1>
+            <div class="w-[200px] h-[1px] bg-my-lime"></div>
           </div>
 
-          <div>
-            <a href="/blogs" class="font-semibold">
-              <div class="bg-mono-neon-purple inline-block mt-[50px] px-5 py-3 rounded-lg text-xl hover:bg-mono-neon-purple/85">Read Blogs</div>
-            </a>
-          </div>
-
-          <img class="absolute bottom-[-100px] left-1/2 -translate-x-1/2 z-100 w-[500px] h-[500px] object-cover" src="{% static 'imgs/bigUfo.png' %}">
-    
-        </div>
-          </div>
-        </div>
-      </m>
-      
-    </section>
-
-    <!-- Testimonies -->
-
-    <section class="width-full bg-my-black-300 rounded-mx">
-
-      <div class="px-5 py-[80px] gap-[40px]">
-
-        <div class="flex flex-col justify-center items-center gap-y-[1.5rem]">
-          <h1 class="text-3xl md:text-4xl font-roboto-mono text-my-white text-center">Alien Testimonies</h1>
-          <div class="w-[200px] h-[1px] bg-my-lime"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto mt-[60px] flex flex-col md:flex-row justify-between gap-[2rem]">
-          <!-- Cards -->
-          <div class="py-[2rem] px-[1rem] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
-            <div class="text-center flex flex-col items-center gap-[20px] h-full">
-              <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
-              <p class="text-my-light-gray">
-                “Praesent bibendum dolor asdsdwdwdwdwdwdwdwdwdin suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
-              </p>
-              <div class="flex flex-col gap-y-[7px] mt-auto">
-                <p class="text-my-white font-bold font-roboto-mono">Glorb The Third</p>
-                <p class="text-my-lime font-bold font-roboto-mono">Ruler of the universe</p>
+          <div class="max-w-7xl mx-auto mt-[60px] flex flex-col md:flex-row justify-between gap-[2rem]">
+            <!-- Cards -->
+            <div class="py-[2rem] px-[1rem] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
+              <div class="text-center flex flex-col items-center gap-[20px] h-full">
+                <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
+                <p class="text-my-light-gray">
+                  “Praesent bibendum dolor asdsdwdwdwdwdwdwdwdwdin suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
+                </p>
+                <div class="flex flex-col gap-y-[7px] mt-auto">
+                  <p class="text-my-white font-bold font-roboto-mono">Glorb The Third</p>
+                  <p class="text-my-lime font-bold font-roboto-mono">Ruler of the universe</p>
+                </div>
               </div>
             </div>
-          </div>
+              
+            <div class="py-[40px] px-[20px] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
+              <div class="text-center flex flex-col items-center gap-[20px] h-full">
+                <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
+                <p class="text-my-light-gray">
+                  “Praesent bibendum dolor in suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
+                </p>
+                <div class="flex flex-col gap-y-[7px] mt-auto">
+                  <p class="text-my-white font-bold font-roboto-mono">Arilou Lalee'layd</p>
+                  <p class="text-my-lime font-bold font-roboto-mono">Alien from Star Wars</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="py-[40px] px-[20px] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
+              <div class="text-center flex flex-col items-center gap-[20px] h-full">
+                <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
+                <p class="text-my-light-gray">
+                  “Praesent bibendum dolor in suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
+                </p>
+                <div class="flex flex-col gap-y-[7px] mt-auto">
+                  <p class="text-my-white font-bold font-roboto-mono">Xorvax</p>
+                  <p class="text-my-lime font-bold font-roboto-mono">Area 51 Alien Escapee</p>
+                </div>
+              </div>
+            </div>
             
-          <div class="py-[40px] px-[20px] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
-            <div class="text-center flex flex-col items-center gap-[20px] h-full">
-              <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
-              <p class="text-my-light-gray">
-                “Praesent bibendum dolor in suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
-              </p>
-              <div class="flex flex-col gap-y-[7px] mt-auto">
-                <p class="text-my-white font-bold font-roboto-mono">Arilou Lalee'layd</p>
-                <p class="text-my-lime font-bold font-roboto-mono">Alien from Star Wars</p>
-              </div>
-            </div>
           </div>
-
-          <div class="py-[40px] px-[20px] bg-my-black-250 w-full rounded-md border-t-2 border-neon-purple">
-            <div class="text-center flex flex-col items-center gap-[20px] h-full">
-              <div class="rounded-[50%] w-[60px] h-[60px] bg-my-white"></div>
-              <p class="text-my-light-gray">
-                “Praesent bibendum dolor in suscipit laoreet. Nunc elementum dolor consectetur, iaculis ligula in, fringilla tortor.”
-              </p>
-              <div class="flex flex-col gap-y-[7px] mt-auto">
-                <p class="text-my-white font-bold font-roboto-mono">Xorvax</p>
-                <p class="text-my-lime font-bold font-roboto-mono">Area 51 Alien Escapee</p>
-              </div>
-            </div>
-          </div>
-          
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 {% endblock %}

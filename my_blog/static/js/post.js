@@ -1,180 +1,160 @@
-class PostField 
+function getErrorMsg(errorState, fieldName, constraints)
 {
-    constructor(htmlID, fieldName, maxContentLength)
-    {
-        this.htmlID = htmlID;
-        this.fieldName = fieldName;
-        this.invalidReason = "none"; // Meaning it is valid.
-        this.constraints = {
-          "maxContentLength" : maxContentLength
-        };
-    }
-};
-
-function identifyInvalidReasonForField(postFieldElement, postField)
-{
-    postFieldElement.invalidReason = "none";
-
-    // If element is missing, treat it as empty input.  
-    if (!postFieldElement)
-        postField.invalidReason = "empty";
-        
-    // Check content
-    const fieldContent = postFieldElement.value.trim()
+    if ((errorState.isValid === true) || (errorState.reason === 'none')) return '';
     
-    if (fieldContent.length == 0) 
-        postField.invalidReason = "empty";
+    switch (errorState.reason) {
+        // General error reasons
+        case 'empty' : return `${fieldName} cannot be empty.`;
 
-    else if (fieldContent.length > postField.constraints["maxContentLength"])
-        postField.invalidReason = "characterOverflow";
-}
+        // Text input reasons
+        case 'characterOverflow' : return `${fieldName} cannot be longer than ${constraints.max_len}.`;
 
-function verifyPostFields(postFields)
-{   
-    for (const field of postFields) 
-    {
-        const fieldElement = document.getElementById(field.htmlID);
-
-        // Find an invalid msg if there is one.
-        identifyInvalidReasonForField(fieldElement, field);
-
-        if (field.invalidReason === "none")
-            resetElementErrState(field, fieldElement);
-        else
-        {
-            const errorMsg = getErrorMsg(field);
-            enableElementErrState(field, fieldElement, errorMsg)
-        }
+        // Radio btn reasons
+        case 'invalidOption' : return `Option chosen for ${fieldName} is invalid.`;
     }
 }
 
-function getErrorMsg(postField)
+function applyErrorStylesToInput(input)
 {
-    if (postField.invalidReason === "none")
-        return '';
-
-    if (postField.invalidReason === "empty")
-        return postField.fieldName + " cannot not be empty."
-
-    // character overflow.
-    const fieldElement = document.getElementById(postField.htmlID);
-    let contentLength = 0;
-
-    if (fieldElement)
-        contentLength = fieldElement.value.trim().length;
-
-    return postField.fieldName + " can only be " 
-      + postField.constraints["maxContentLength"] + " characters long."
-      + " current character count is " + contentLength;
+    // Toggle field styles
+    safeAddClassesToElement(input, ['border-red-400', 'focus:border-red-400']);
+    safeRemoveClassesFromElement(input, ['focus:border-neon-purple', 'border-transparent']);
 }
 
-function areAllFieldsValid(postFields)
+function removeErrorStylesFromInput(input)
 {
-    for (const field of postFields)
-    {
-        // If there is an error.
-        if (field.invalidReason !== "none")
-            return false;
+    // Toggle field styles
+    safeRemoveClassesFromElement(input, ['border-red-400', 'focus:border-red-400']);
+    safeAddClassesToElement(input, ['border-transparent', 'focus:border-neon-purple']);
+}
+
+function setTextOfFieldErrorContainer(errorObj, constraints, fieldName, errorTextContainer) {
+    const errorMsg = getErrorMsg(errorObj, fieldName, constraints)
+    errorTextContainer.textContent = errorMsg;
+}
+
+function verifyTextInput(textInput, constraints) {
+    // Check if element isn't null
+    if (!textInput) {
+        return {isValid : false, reason : 'empty'};
     }
 
-    return true;
+    // Check if length matches constraints
+    const contentLength = textInput.value.trim().length;
+
+    if (contentLength == 0) {
+        return {isValid : false, reason : 'empty'};
+    }
+
+    if ((constraints.max_len != -1) && (contentLength > constraints.max_len)) {
+        return {isValid : false, reason : 'characterOverflow'};;
+    }
+
+    return {isValid : true, reason : 'none'};
 }
 
-function enableElementErrState(field, fieldElement, errorMsg)
-{
-    // This is the field
-    if (!fieldElement.classList.contains('border-red-400'))
-        fieldElement.classList.add('border-red-400')
-    
-    if (!fieldElement.classList.contains('focus:border-red-400'))
-        fieldElement.classList.add('focus:border-red-400')
-    
-    if (fieldElement.classList.contains('border-transparent'))
-        fieldElement.classList.remove('border-transparent')
+function verifyRadioBtns(radioInput, constraints) {
+    // Check if user selected a radio button
+    const selectedRadioBtn = document.querySelector(`input[name=${radioInput.name}]:checked`);
 
-    // Get the error message, and give it this error message
-    const errorTag = document.getElementById(field.htmlID + '-error-text-tag');
-    if (!errorTag) return;
+    if (!selectedRadioBtn) {
+        return {isValid: false, reason: 'empty'}; 
+    }
 
-    errorTag.textContent = errorMsg;
+    // If the chosen value of the radio btn isn't in the constraints
+    if (!constraints.options.includes(selectedRadioBtn.value)) {
+        return {isValid: false, reason: 'invalidOption'};
+    }
+
+    return {isValid: true, reason: 'none'};
 }
 
-function resetElementErrState(field, fieldElement)
-{
-    // This is the field
-    if (fieldElement.classList.contains('border-red-400'))
-        fieldElement.classList.remove('border-red-400')
-    
-    if (fieldElement.classList.contains('focus:border-red-400'))
-        fieldElement.classList.remove('focus:border-red-400')
-    
-    if (!fieldElement.classList.contains('border-transparent'))
-        fieldElement.classList.add('border-transparent')
+function verifyField(inputElement, constraints) {
+    if (!constraints.required)
+        return {isValid : true, reason : 'none'};
 
-    // Get the error message, and empty it
-    const errorTag = document.getElementById(field.htmlID + '-error-text-tag');
-    if (!errorTag) return;
-
-    errorTag.textContent = '';
+    switch (inputElement.type) {
+        case 'text':
+        case 'textarea':
+            return verifyTextInput(inputElement, constraints);
+        case 'radio':
+            return verifyRadioBtns(inputElement, constraints);
+    }   
 }
 
-function verifyForm()
+function verifyForm(fieldIdsToIgnore)
 {
     const backendNote = document.getElementById('secret-note');
     const backendPageData = JSON.parse(backendNote.textContent);
+    const fieldsDataFromBackend = backendPageData['fieldData'];
 
-    let postFields = [
-      new PostField("post-title", "Title", backendPageData['formData']['post_title']['maxLen']),
-      new PostField("post-description", "Description", backendPageData['formData']['post_description']['maxLen']),
-      new PostField("post-content", "Content", backendPageData['formData']['post_content']['maxLen']),
+    // ID of each field i'm verfiying, their key's are their constraints
+    const fieldsToValidate = [
+        {
+            id: 'blog-title',
+            name: 'Title',
+            type: 'text',
+            backendKey: 'blog_title'
+        },
+        {
+            id: 'blog-description',
+            name: 'Description',
+            type: 'textarea',
+            backendKey: 'blog_description'
+        },
+        {
+            id: 'blog-tag',
+            name: 'Tag',
+            type: 'radio',
+            backendKey: 'blog_tag'
+        },
+        {
+            id: 'blog-content',
+            name: 'Content',
+            type: 'textarea',
+            backendKey: 'blog_content'
+        },
     ];
-    
-    verifyPostFields(postFields);
 
-    if (areAllFieldsValid(postFields))
-        return true;
+    // Verifying time i guess. man this sucks absolute ass.
+    let isFormValid = true;
 
-    return false;
+    for (const field of fieldsToValidate) {
+        const input = document.getElementById(field.id);
+        const error_text_container = document.getElementById(field.id + '-error-text-tag');
+        const constraints = fieldsDataFromBackend[field.backendKey];
+        const fieldErrorState = verifyField(input, constraints);     
+        
+        // if field is valid. it removes the text. if there is an error, sets the text to that.
+        setTextOfFieldErrorContainer(fieldErrorState, constraints, field.name, error_text_container);
+
+        if (!fieldErrorState.isValid) {
+            isFormValid = false;
+            applyErrorStylesToInput(input);
+            continue;
+        }
+        
+        removeErrorStylesFromInput(input, error_text_container);
+    }
+
+    return isFormValid; 
 }
 
-function onPostFormSubmit(event)
-{
-    // If form isn't valid, prevent submission. 
-    if (!verifyForm())
-        event.preventDefault();
+function onblogFormSubmit(event) {
+    // if (!verifyForm())
+    //     event.preventDefault();
 }
 
-function addEventToPostForm()
+function addEventToblogForm()
 {
-    const postForm = document.getElementById('post-form');
+    const blogForm = document.getElementById('blog-form');
 
-    if (postForm)
+    if (blogForm)
     {
-        postForm.addEventListener("submit", (event) => {
-            onPostFormSubmit(event);
+        blogForm.addEventListener("submit", (event) => {
+            onblogFormSubmit(event);
         });
     }
-}
-
-function initializeFormErrors()
-{
-    // Check if backend encountered any errors.
-    const backendNote = document.getElementById('secret-note');
-    const backendPageData = JSON.parse(backendNote.textContent);
-
-    let didFormFailBackend = false;
-
-    for (const [fieldName, fieldData] of Object.entries(backendPageData['formData'])) 
-    {
-        if (fieldData['error'] != 'none')
-            didFormFailBackend = true;
-
-        const field = document.getElementById(fieldData['htmlID']);
-        field.value = fieldData['value'];
-    }
-
-    if (didFormFailBackend)
-        verifyForm();
 }
 
 // For the content field.
@@ -242,11 +222,10 @@ function handleClassesForViewBtnSelections(viewToSwitch)
 
 function blogContentSwitchView(viewToSwitch)
 {
-    
     handleClassesForViewBtnSelections(viewToSwitch);
 
-    const contentTextArea = document.getElementById('post-content');
-    const contentMarkdownPreview = document.getElementById('post-content-markdown-preview')
+    const contentTextArea = document.getElementById('blog-content');
+    const contentMarkdownPreview = document.getElementById('blog-content-markdown-preview')
     const contentMarkdownPreviewContainer = contentMarkdownPreview.parentElement;
 
     if (!contentTextArea || !contentMarkdownPreview)
@@ -271,17 +250,17 @@ function renderMarkdown(markdownInput, htmlOutput) {
     htmlOutput.innerHTML = marked.parse(markdownText);
 }
 
-function addEventListenerToPostContentField()
+function addEventListenerToblogContentField()
 {
     marked.setOptions({
         breaks : true
     });
 
-    const markdownInputHTMLID = 'post-content';
-    const htmlOutputHTMLID = 'post-content-markdown-preview';
+    const markdownInputhtml_id = 'blog-content';
+    const htmlOutputhtml_id = 'blog-content-markdown-preview';
 
-    const markdownInput = document.getElementById(markdownInputHTMLID);
-    const htmlOutput = document.getElementById(htmlOutputHTMLID);
+    const markdownInput = document.getElementById(markdownInputhtml_id);
+    const htmlOutput = document.getElementById(htmlOutputhtml_id);
 
     markdownInput.addEventListener('keyup', () => {
         renderMarkdown(markdownInput, htmlOutput);
@@ -290,8 +269,49 @@ function addEventListenerToPostContentField()
     renderMarkdown(markdownInput, htmlOutput);
 }
 
+// Check if backend encountered any errors.
+function initializeFormWithBackendData() {
+    const backendNote = document.getElementById('secret-note');
+    const backendPageData = JSON.parse(backendNote.textContent);
+    const fieldsDataFromBackend = backendPageData['fieldData'];
+
+    for (const field of Object.entries(fieldsDataFromBackend)) { 
+
+        const fieldToInitialize = field[1];
+
+        if (fieldToInitialize.type === 'textarea' 
+        || fieldToInitialize.type === 'text') {
+            const valueToSet = fieldToInitialize['value'];
+            document.getElementById(fieldToInitialize['html_id']).value = valueToSet;
+        }
+
+        else if (fieldToInitialize.type === 'radio') {
+            // mark the input with specified value as checked
+            const selector = `input[type="radio"][value="${fieldToInitialize.value}"]`;
+            const radioInputToSelect = document.querySelector(selector);
+
+            if (radioInputToSelect) {
+                radioInputToSelect.checked = true;
+            }
+        }
+
+        else if (fieldToInitialize.type === 'checkbox') {
+            const checkBoxToSet = document.getElementById(fieldToInitialize.html_id);
+            
+            if (checkBoxToSet) {
+                checkBoxToSet.checked = fieldToInitialize.value;
+            }
+        }
+    }
+ 
+    // Initialize errors if post
+    if (backendPageData.didUserSubmit) {
+        verifyForm();
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    initializeFormErrors();
-    addEventToPostForm();
-    addEventListenerToPostContentField();
+    initializeFormWithBackendData();
+    addEventToblogForm();
+    addEventListenerToblogContentField();
 });

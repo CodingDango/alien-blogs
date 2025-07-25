@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Sign Up
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-my-black-300 text-white">
+    <div class="min-h-screen h-full w-full grid grid-cols-1 sm:grid-cols-2">
+      <!-- The image -->
+      <div class="col-start-1 row-start-1 ">
+        <img 
+          class="max-h-screen object-cover h-full w-full"
+          src="{% static 'imgs/ufoGuys.webp' %}">
+      </div>
+
+      <!-- The form -->
+      <form 
+        class="h-full w-full flex justify-center items-center"
+        action="/users/sign-up/" 
+        method="post"
+      >
+        {% csrf_token %}
+
+        <div class="px-5 py-10 w-full max-w-lg flex flex-col gap-5">
+          <div class="w-full">
+            <h1 class="text-3xl">Sign Up To Stay Updated</h1>
+            <p class="text-gray-400 mt-3">Be notified of our interesting, wacky, and fun blogs.</p>
+          </div>
+
+          <!-- Fields -->
+          <div class="w-full mt-5 flex flex-col gap-7">
+            <!-- Username -->
+            <div class="flex flex-col gap-2">
+              <label for="username">Username</label>
+              <div 
+                class="flex bg-gray-900 border border-gray-700 rounded-md focus-within:border-mono-neon-purple/70 focus-within:shadow-[0_0_5px_theme(colors.mono-neon-purple)]">
+                <div class="w-[40px] flex justify-center items-center">
+                  <i class="fa-regular fa-user fa-lg"></i>
+                </div>
+                <input 
+                  class="
+                    w-full bg-transparent p-2 outline-none
+                    [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_theme(colors.gray.900)]
+                    [&:-webkit-autofill]:[-webkit-text-fill-color:white]
+                    [&::selection]:[-webkit-text-fill-color:white]
+                    active:[-webkit-text-fill-color:white]
+                    " 
+                  id="username"
+                  type="text"
+                  autocomplete="off"
+                  
+                >
+              </div>
+            </div>
+            
+            <!-- Email -->
+            <div class="flex flex-col gap-2">
+              <label for="email">Email Address</label>
+              <div 
+                class="flex bg-gray-900 border border-gray-700 rounded-md focus-within:border-mono-neon-purple/70 focus-within:shadow-[0_0_5px_theme(colors.mono-neon-purple)]">
+                <div class="w-[40px] flex justify-center items-center">
+                  <i class="fa-regular fa-envelope fa-lg"></i>
+                </div>
+                <input 
+                  class="
+                    w-full bg-transparent p-2 outline-none
+                    [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_theme(colors.gray.900)]
+                    [&:-webkit-autofill]:[-webkit-text-fill-color:white]
+                    [&::selection]:text-white
+                    active:text-white
+                    " 
+                  id="email"
+                  type="email"
+                >
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="flex flex-col gap-2">
+              <label for="password">Password</label>
+              <div 
+                class="flex bg-gray-900 border border-gray-700 rounded-md focus-within:border-mono-neon-purple/70 focus-within:shadow-[0_0_5px_theme(colors.mono-neon-purple)]">
+                <div class="w-[40px] flex justify-center items-center">
+                  <i class="fa-solid fa-lock fa-lg"></i>
+                </div>
+                <input 
+                  class="
+                    w-full bg-transparent p-2 outline-none
+                    [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_theme(colors.gray.900)]
+                    [&:-webkit-autofill]:[-webkit-text-fill-color:white]
+                    [&::selection]:[-webkit-text-fill-color:white]
+                    active:[-webkit-text-fill-color:white]
+                    " 
+                  id="password"
+                  type="password"    
+                >
+              </div>
+            </div>
+
+            <div class="mt-7 flex flex-col gap-5 text-center">
+              <button 
+                class="rounded-md bg-mono-neon-purple py-3 flex items-center justify-center"
+                type="submit"
+              >
+                <span>Sign Up</span>
+                <div class="w-[40px] flex justify-center items-center">
+                  <i class="fa-solid fa-arrow-right-to-bracket fa-lg"></i>
+                </div>
+              </button>
+              <p>Already have an account? 
+                <a href="/users/sign-in" class="text-neon-purple">Sign in.</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

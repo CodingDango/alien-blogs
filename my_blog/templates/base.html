@@ -20,14 +20,15 @@
   {% block link %}
   {% endblock %}
 
-    <title>
-        {% block title %}
-        {% endblock %}
-    </title>
+  <title>
+      {% block title %}
+      {% endblock %}
+  </title>
 
 </head>
 <body>
 
+    {% block header %}
     <!-- Header -->
     <header class="sticky top-0 left-0 z-30 w-full bg-my-black-300 overflow-hidden">
 
@@ -41,7 +42,7 @@
               <!-- Left side -->
               <div class="flex gap-x-5 items-center">
                 <!-- Logo -->
-                <a href="/home">
+                <a href="/">
                   <div>
                     <img src="{% static 'imgs/ufo.svg' %}" width="40" height="40">
                   </div>
@@ -55,12 +56,12 @@
                     </a>
                   </li>
                   <li>
-                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent hover:bg-white/5" href="/home">
+                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent hover:bg-white/10" href="/">
                         Home
                     </a>
                   </li>
                   <li>
-                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent hover:bg-white/5" href="/about-us">
+                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent hover:bg-white/10" href="/about-us">
                         About Us
                     </a>
                   </li>
@@ -71,10 +72,10 @@
               <div class="flex gap-x-5 items-center">
 
                 <!-- Create blog post admin only -->
-                <a href="/blogs/post">
-                  <div class="flex gap-x-3 px-3 py-2 bg-mono-neon-purple/60 rounded-md hover:bg-mono-neon-purple/50">
+                <a href="/blogs/create">
+                  <div class="flex gap-x-3 px-3 py-2 rounded-md border border-gray-500">
                     <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
-                    <span class="font-semibold">Create Blog</span>
+                    <span>Create Blog</span>
                   </div>
                 </a>
 
@@ -115,7 +116,7 @@
                       <i class="fa-solid fa-bars fa-lg"></i>
                     </span>
                   </button>
-                  <a href="/home">
+                  <a href="/">
                     <div>
                       <img src="{% static 'imgs/ufo.svg' %}" width="40" height="40">
                     </div>
@@ -125,10 +126,10 @@
                 <!-- Right Side -->
                 <div class="flex gap-x-5 items-center">
 
-                  <a href="/blogs/post">
-                    <div class="flex gap-x-3 px-3 py-2 bg-mono-neon-purple/70 rounded-md hover:bg-mono-neon-purple/50">
+                  <a href="/blogs/create">
+                    <div class="flex gap-x-3 px-3 py-2 bg-zinc-900 rounded-md">
                       <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
-                      <span class="font-semibold">Create Blog</span>
+                      <span>Create Blog</span>
                     </div>
                   </a>
 
@@ -140,7 +141,7 @@
               </div>
 
               <!-- Hamburger Menu Mode -->
-              <div id="hamburgerMenuDiv" class="h-[calc(100vh-(theme(spacing.header)+30px))] hidden overflow-hidden w-full bg-my-black-300">
+              <div id="hamburgerMenuDiv" class="h-[calc(100vh-(theme(spacing.header)+28px))] hidden overflow-hidden w-full bg-my-black-300">
 
                 <!-- Search -->
                 <div class="w-full mb-10 flex">
@@ -187,13 +188,16 @@
         </div>
       </div>
     </header>
+    {% endblock %}
 
     <!-- Main content -->
-    <main class="min-h-[calc(100vh-theme(spacing.header))] pb-[80px] bg-my-black-300">
+    <main>
       {% block content %}
       {% endblock %}
     </main>
+    <!-- class="min-h-[calc(100vh-theme(spacing.header))] pb-[100px] bg-my-black-300" -->
 
+    {% block footer %}
     <!-- Footer -->
     <footer class="w-full bg-my-black-300">
 
@@ -229,7 +233,7 @@
         <div class="flex flex-col gap-y-10">
           <!-- Logo -->
           <div>
-            <a href="/home">
+            <a href="/">
               <div class="flex gap-x-3 items-center justify-center">
                 <div>
                   <img src="{% static 'imgs/ufo.svg' %}" width="60" height="60">
@@ -279,45 +283,8 @@
           <div class="text-center">
             <p class="text-sm text-gray-400">Copyright© 2025 Outsider Blogs</p>
           </div>
-
         </div>
-
       </div>
-      
-
     </footer>
+    {% endblock %}
 </body>
-
-
-
-      <!-- <div class="z-20 flex flex-col items-center py-[40px] px-5 gap-y-[30px]">
-         Identity 
-        <div class="flex flex-col items-center gap-y-[1rem]">
-          <img src="{% static 'imgs/alien.png' %}" width="45" height="40">
-          <p class="text-[20px] font-roboto-mono font-bold flex gap-x-[1rem]">
-            <span class="text-my-white">Dango</span><span class="text-my-black-100">Dev</span>
-          </p>
-        </div>
-
-         Nav 
-        <div class="flex justify-center items-center gap-6 flex-wrap">
-
-           Socials 
-          <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
-            <i class="fa-brands fa-facebook-f fa-xl"></i>
-          </a>
-          <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
-            <i class="fa-brands fa-instagram fa-xl"></i>
-          </a>
-          <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
-            <i class="fa-brands fa-youtube fa-xl"></i>
-          </a>
-          <a href="#" class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center text-white transition-color ease-in-out duration-200 hover:bg-my-white hover:text-black">
-            <i class="fa-brands fa-twitter fa-xl"></i>
-          </a>
-
-        </div>
-      </div>
-      <div class="bg-zinc-900 w-full px-5 py-[5px]">
-        <p class="text-gray-300 text-[0.8rem]">Copyright ©2025 <a class="text-neon-purple" href="https://github.com/CodingDango" target="_blank">DangoDev</a></p>
-      </div> -->

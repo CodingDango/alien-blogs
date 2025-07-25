@@ -1,7 +1,10 @@
 # Shit I Should Do
 
+## Large things below
+
 ## Header
-Implement the search pop up on desktop mode.
+
+- Implement the search pop up on desktop mode.
 
 
 ## Refine the footer subscribe
@@ -29,10 +32,6 @@ Implement the search pop up on desktop mode.
 ## Read blog page
 
 - Make the dates more dynamic
-  - I would have to change the database, maybe delete everything in it,
-  - I need a date when it was posted
-  - and a date on when it was last updated.
-  - The format is M D, Y
   - The author needs to also be dynamic.
   - Right now, it looks so damn dull. Only white colors. how in the world do i give it color to the text? this is ass.
   

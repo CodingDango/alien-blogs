@@ -4,49 +4,51 @@
 {% load markdown_extras %}
 
 {% block title %}
-  {{ blogPost.title }}
+  {{ blog_to_read.title }}
 {% endblock %}
 
 {% block content %}
-  <div class="w-full h-full bg-my-black-300 min-h-[calc(100vh-theme(spacing.header))]">
-    <article class="grid w-full">
-      <div class="h-[450px] col-start-1 row-start-1 grid">
-        <img src="{% static 'imgs/placeholder.jpg' %}" class="w-full object-cover h-[450px] col-start-1 row-start-1">
-        <div class="w-full bg-my-black-300/70 h-[450px] col-start-1 row-start-1"></div>
-      </div>
-      <!-- Content -->
-      <div class="w-full px-5 col-start-1 row-start-1">
-        <header class="w-full h-[450px] flex justify-center items-center">
-          <div class="max-w-7xl w-full flex justify-center items-center">
-            <div class="max-w-3xl text-center">
-              <h1 class="text-5xl text-my-white font-semibold">{{ blogPost.title }}</h1>
-              <p class="mt-5 text-xl text-gray-400">{{ blogPost.description }}</p>
-              <div class="text-sm mt-10 italic text-gray-400 flex items-center justify-center gap-2">
-                <div class="w-[50px] h-[50px]">
-                  <img src="{% static 'imgs/placeholder.jpg'%}" class="w-full h-full object-cover rounded-full">
+  <div class="min-h-[calc(100vh-theme(spacing.header))] pb-[100px] bg-my-black-300">
+    <div class="w-full h-full bg-my-black-300 min-h-[calc(100vh-theme(spacing.header))]">
+      <article class="grid w-full">
+        <div class="h-[450px] col-start-1 row-start-1 grid">
+          <img src="{% static 'imgs/placeholder.jpg' %}" class="w-full object-cover h-[450px] col-start-1 row-start-1">
+          <div class="w-full bg-my-black-300/70 h-[450px] col-start-1 row-start-1"></div>
+        </div>
+        <!-- Content -->
+        <div class="w-full px-5 col-start-1 row-start-1">
+          <header class="w-full h-[450px] flex justify-center items-center">
+            <div class="max-w-7xl w-full flex justify-center items-center">
+              <div class="max-w-3xl text-center">
+                <h1 class="text-5xl text-my-white font-semibold">{{ blog_to_read.title }}</h1>
+                <p class="mt-5 text-xl text-gray-400">{{ blog_to_read.description }}</p>
+                <div class="text-sm mt-10 italic text-gray-400 flex items-center justify-center gap-2">
+                  <div class="w-[50px] h-[50px]">
+                    <img src="{% static 'imgs/placeholder.jpg'%}" class="w-full h-full object-cover rounded-full">
+                  </div>
+                  <p>Created by <span class="not-italic text-neon-purple font-semibold underline">Dango Dono</span></p>
+                  <span class="not-italic">|</span>
+                  <p>
+                    Created on
+                    <span class="not-italic text-my-white font-semibold">{{ blog_to_read.date_created|date:"j F, Y" }}</span>. 
+                    <!-- Last updated on 
+                    <span class="not-italic text-my-white font-semibold">June 11, 2070</span> -->
+                  </p>
+            
                 </div>
-                <p>Posted by <span class="not-italic text-neon-purple font-semibold underline">Jane Doe</span></p>
-                <span class="not-italic">|</span>
-                <p>
-                  Posted on
-                  <span class="not-italic text-my-white font-semibold">June 10, 2069</span>. 
-                  Last updated on 
-                  <span class="not-italic text-my-white font-semibold">June 11, 2070</span>
-                </p>
-          
               </div>
             </div>
-          </div>
-        </header>
+          </header>
 
-        <section class="py-20 w-full flex justify-center">
-          <div class="max-w-7xl w-full flex justify-center">
-            <div class="bg-my-black-300 prose prose-invert max-w-3xl text-my-white text-[17px]">
-              {{ blogPost.content|convert_markdown|safe }}
+          <section class="py-20 w-full flex justify-center">
+            <div class="max-w-7xl w-full flex justify-center">
+              <div class="bg-my-black-300 prose prose-invert max-w-3xl text-my-white text-[17px]">
+                {{ blog_to_read.content|convert_markdown|safe }}
+              </div>
             </div>
-          </div>
-        </section>
-      </div>
-    </article>
+          </section>
+        </div>
+      </article>
+    </div>
   </div>
 {% endblock %}
