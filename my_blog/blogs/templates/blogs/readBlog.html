@@ -26,7 +26,7 @@
                   <div class="w-[50px] h-[50px]">
                     <img src="{% static 'imgs/placeholder.jpg'%}" class="w-full h-full object-cover rounded-full">
                   </div>
-                  <p>Created by <span class="not-italic text-neon-purple font-semibold underline">Dango Dono</span></p>
+                  <p>Created by <span class="not-italic text-neon-purple font-semibold underline">{{ blog_to_read.author.first_name }} {{ blog_to_read.author.last_name }}</span></p>
                   <span class="not-italic">|</span>
                   <p>
                     Created on

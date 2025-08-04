@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block link %}
+  <script src="{% static 'js/common.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+  Sign Up
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-my-black-300 text-white px-5 ">
+    <div class="pt-12 max-w-md mx-auto">
+      <div class="pb-10 flex gap-y-7 justify-center items-center flex-col">
+        <div class="p-3 rounded-full bg-white/10">
+          <img class='scale-105' src="{% static 'imgs/ufo.svg' %}">
+        </div>
+        <h1 class="text-2xl">Sign in to Outsider Blogs</h1>
+      </div>
+      
+      <form action="/users/sign-in/" method="post" class="flex flex-col gap-5">
+        {% csrf_token %}
+
+        <!-- Error -->
+        {% if error_msg %}
+        <div class="ancestor-to-delete p-4 border border-red-600 bg-red-700/10 relative rounded-md">
+          <div class="flex justify-center items-center">
+            <p>{{ error_msg }}</p>
+          </div>
+          <button class="js-delete-ancestor z-10 absolute flex justify-center items-center text-red-600 right-4 top-1/2">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </button>
+        </div>
+        {% endif %}
+
+        <div class="w-full">
+          <div class="flex flex-col gap-7">
+            <div class="flex flex-col gap-2">
+              <label>Email address</label>
+              <input name="email" class="py-3 px-2 bg-zinc-950 border border-zinc-700 rounded-md">
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <div class="flex justify-between">
+                <label>Password</label>
+                <a href="#" class="text-neon-purple">Forgot password?</a>
+              </div>
+              <input type="password" name="password" class="py-3 px-2 bg-zinc-950 border border-zinc-700 rounded-md">
+            </div>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="bg-green-600 py-3 px-2 w-full rounded-md hover:bg-green-700 font-semibold"
+        >Sign In</button>
+
+        <div class="text-center">
+          <p>Don't have an account? <a class="text-neon-purple" href="/users/sign-up/">Create an account.</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,10 +1,15 @@
 # Shit I Should Do
 
+## Small things
+- [x] Fix bug when in hamburger menu mode, create blogs and profile pic is visible even when not logged in
+- [x] make the search input more smaller in hamburger mode.
+- [x] remove the bright green button for search in the search field. use a neutral icon instead.
+- [x] Move the Sign out and Profile controls to the hamburger menu. they take too much space.
+- [ ] when hovered over the profile icon (for now just use a placeholder image) there should be a cursor.
+
+
 ## Large things below
-
-## Header
-
-- Implement the search pop up on desktop mode.
+- [ ] for desktop version, when clicking, it should have a small drop down menu showing two links. Account and Sign Out.
 
 
 ## Refine the footer subscribe
@@ -18,7 +23,8 @@
 
 - Create another app for django? call it users.
   - Database model will include
-    - username
+    - first_name
+    - last_name
     - email
     - password
     - is_subscribed
@@ -27,11 +33,3 @@
 - Create a template for login
 - Create a template for sign up
 
-- Remember, in the nav. if the user is logged in, show a log out. if they aren't logged in, show login and sign up links.
-
-## Read blog page
-
-- Make the dates more dynamic
-  - The author needs to also be dynamic.
-  - Right now, it looks so damn dull. Only white colors. how in the world do i give it color to the text? this is ass.
-  

@@ -1,6 +1,6 @@
 from django.shortcuts import HttpResponse, render, redirect
-from django.contrib import messages
 from .models import *
+from django.contrib.auth.decorators import login_required
 from pprint import pprint
 
 # Create your views here.
@@ -19,8 +19,9 @@ def blogs_view(request):
         "blogTags" : Blog.BLOG_TAG_OPTIONS
     }    
 
-    return render(request, "blogs.html", context)
+    return render(request, "blogs/blogs.html", context)
 
+@login_required(login_url='/users/sign-in')
 def create_blog_view(request):
     ERROR_ENUMS = {
         'none' : 'none',
@@ -115,14 +116,15 @@ def create_blog_view(request):
                 description=fields['blog_description']['value'],
                 content=fields['blog_content']['value'],
                 tag=fields['blog_tag']['value'],
-                is_featured=fields['blog_is_featured']['value']
+                is_featured=fields['blog_is_featured']['value'],
+                author=request.user
             )
             
             newBlog.save()
             return redirect("/blogs")
 
     context = {'pageData' : pageData}
-    return render(request, "create.html", context)
+    return render(request, "blogs/create.html", context)
 
 def read_blog_view(request, blog_id):
     blog_to_read = Blog.objects.get(id=blog_id)
@@ -131,4 +133,4 @@ def read_blog_view(request, blog_id):
         "blog_to_read" : blog_to_read
     }
     
-    return render(request, "readBlog.html", context=context)
+    return render(request, "blogs/readBlog.html", context=context)

@@ -26,20 +26,27 @@ SECRET_KEY = 'django-insecure-53vq*l=8b*25=@b6g-0^b%_cq-d@olz_=nieueey0px3&_6j05
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    '192.168.68.112', '127.0.0.1', 'localhost'
+]
 
 # Application definition
 
 INSTALLED_APPS = [
     'blogs',
     'users',
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'users.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend', # Keep default for admin
 ]
 
 MIDDLEWARE = [
@@ -125,6 +132,8 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+

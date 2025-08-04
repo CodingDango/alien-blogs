@@ -30,7 +30,7 @@
 
     {% block header %}
     <!-- Header -->
-    <header class="sticky top-0 left-0 z-30 w-full bg-my-black-300 overflow-hidden">
+    <header class="sticky top-0 left-0 z-30 w-full bg-my-black-300">
 
       <div class="py-[10px] text-my-white">
         <div class="w-full max-w-7xl mx-auto">
@@ -51,17 +51,17 @@
                 <!-- Links -->
                 <ul class="flex gap-x-5 items-center">
                   <li>
-                    <a class="p-2 w-10 h-4 bg-mono-neon-purple/30 rounded-md hover:bg-mono-neon-purple/50" href="/blogs">
+                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-mono-neon-purple/50" href="/blogs">
                         Blogs
                     </a>
                   </li>
                   <li>
-                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent hover:bg-white/10" href="/">
+                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent" href="/">
                         Home
                     </a>
                   </li>
                   <li>
-                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent hover:bg-white/10" href="/about-us">
+                    <a class="p-2 w-10 h-4 text-gray-300 rounded-md bg-transparent" href="/about-us">
                         About Us
                     </a>
                   </li>
@@ -71,26 +71,43 @@
               <!-- Right Side -->
               <div class="flex gap-x-5 items-center">
 
-                <!-- Create blog post admin only -->
-                <a href="/blogs/create">
-                  <div class="flex gap-x-3 px-3 py-2 rounded-md border border-gray-500">
-                    <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
-                    <span>Create Blog</span>
-                  </div>
-                </a>
-
-                <!-- A Notification bell dropdown menuthat will notify about recent blog posts-->
-                <button>
-                  <div class="flex justify-center items-center">
-                    <i class="text-gray-400 fa-regular fa-bell fa-xl hover:brightness-125"></i>
-                  </div>
-                </button>
-
                 <!-- Profile picture -->
-                <div class="w-[35px] h-[35px]">
-                  <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
-                </div>  
+                {% if request.user.is_authenticated %}
+                  <!-- Create blog post admin only -->
+                  <a href="/blogs/create">
+                    <div class="flex gap-x-3 px-3 py-2 border rounded-md border-gray-500">
+                      <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
+                      <span>Create Blog</span>
+                    </div>
+                  </a>
 
+                  <div class="relative flex items-center">
+                    <button class="w-[35px] h-[35px]">
+                      <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
+                    </button>
+                    
+                    <div class="py-2 absolute mt-2 rounded-md shadow-lg w-48 right-0 top-full bg-zinc-800 z-10">
+                      <ul class="flex flex-col">
+                        <li>
+                          <a href="#">
+                            <div class="w-full py-2 pl-4">Profile</div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/users/sign-out">
+                            <div class="w-full py-2 pl-4">Sign out</div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                {% else %} 
+                  <a href="/users/sign-in">
+                    <div class="px-3 py-2 rounded-2xl bg-mono-neon-purple">
+                      Sign in
+                    </div>
+                  </a>
+                {% endif %}
                 <!-- Search Button -->
                 <button>
                   <span class="flex justify-center items-center">
@@ -126,62 +143,91 @@
                 <!-- Right Side -->
                 <div class="flex gap-x-5 items-center">
 
-                  <a href="/blogs/create">
-                    <div class="flex gap-x-3 px-3 py-2 bg-zinc-900 rounded-md">
-                      <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
-                      <span>Create Blog</span>
-                    </div>
-                  </a>
-
-                  <!-- Profile picture -->
-                  <div class="w-[35px] h-[35px]">
-                    <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
-                  </div>
+                <!-- Profile picture -->
+                  {% if request.user.is_authenticated %}
+                    <!-- Create blog post admin only -->
+                    <a href="/blogs/create">
+                      <div class="flex gap-x-3 px-3 py-2 border rounded-md border-gray-500">
+                        <div class="flex justify-center items-center text-white"><i class="fa-solid fa-plus fa-md"></i></div>
+                        <span>Create Blog</span>
+                      </div>
+                    </a>
+                  {% endif %}
                 </div>
               </div>
 
               <!-- Hamburger Menu Mode -->
-              <div id="hamburgerMenuDiv" class="h-[calc(100vh-(theme(spacing.header)+28px))] hidden overflow-hidden w-full bg-my-black-300">
+              <div 
+                id="hamburgerMenuDiv" 
+                class="h-[calc(100vh-(theme(spacing.header)+28px))] hidden overflow-hidden w-full bg-my-black-300">
 
                 <!-- Search -->
-                <div class="w-full mb-10 flex">
+                <div class="w-full pl-4 mb-8 flex bg-zinc-900 rounded-md outline-none border border-transparent focus-within:border-blue-500">
+
+                  <div class="flex items-center justify-center">
+                    <i class="text-gray-300 fa-solid fa-magnifying-glass fa-md"></i>
+                  </div>
 
                   <input 
-                    class="w-full h-14 px-4 bg-zinc-900 placeholder-zinc-500 text-white outline-none border border-transparent focus:border-blue-500 rounded-l-md"
+                    class="w-full p-3 bg-transparent placeholder-zinc-500 text-white outline-none rounded-r-md"
                     placeholder="Search blog"
                   >
 
-                  <button class="w-20 h-14 flex justify-center items-center bg-emerald-500 hover:bg-emerald-600 rounded-r-md">
+                  <!-- <button class="w-20 h-14 flex justify-center items-center bg-emerald-500 hover:bg-emerald-600 rounded-r-md">
                     <i class="text-white fa-solid fa-magnifying-glass fa-lg"></i>
-                  </button>
+                  </button> -->
+                </div>
+
+                <div class="flex flex-col gap-y-3">
+                  <ul class="w-full flex flex-col gap-y-3">
+                    <li>
+                      <a href="#" class="w-full">
+                        <div class="text-md w-full py-2 pl-4 text-neon-purple bg-dark-neon-purple/20 hover:bg-dark-neon-purple/30 rounded-md">
+                          Blogs
+                        </div>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#" class="w-full">
+                        <div class="text-md py-2 pl-4 rounded-md bg-transparent hover:bg-white/5">
+                          Home
+                        </div>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#" class="w-full">
+                        <div class="text-md py-2 pl-4 rounded-md bg-transparent hover:bg-white/5">
+                          About Us
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+
+                  <div class="pl-4 pt-4 border-t border-zinc-800 flex flex-col gap-y-5">
+                    {% if request.user.is_authenticated %}  
+                      <div class="flex items-center gap-x-3">
+                        <div class="w-[40px] h-[40px]">
+                          <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
+                        </div> 
+                        <div>
+                          <p>
+                            <span>{{ request.user.first_name }}</span> 
+                            <span>{{ request.user.last_name }}</span>
+                          </p>
+                          <p class="text-gray-400">{{ request.user.email }}</p>
+                        </div>
+                      </div>
+                      <ul class="flex flex-col gap-y-3">
+                        <li class="text-gray-300">Your Profile</li>
+                        <li class="text-gray-300">Sign out</li>
+                      </ul>
+                    {% endif %}
+                  </div>
 
                 </div>
 
-                <ul class="w-full flex flex-col gap-y-3">
-                  <li>
-                    <a href="#" class="w-full">
-                      <div class="text-lg w-full p-3 text-mono-neon-purple bg-dark-neon-purple/20 hover:bg-dark-neon-purple/30 rounded-md">
-                        Blogs
-                      </div>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="#" class="w-full">
-                      <div class="text-lg text-gray-300 p-3 rounded-md bg-transparent hover:bg-white/5">
-                        Home
-                      </div>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="#" class="w-full">
-                      <div class="text-lg text-gray-300 p-3 rounded-md bg-transparent hover:bg-white/5">
-                        About Us
-                      </div>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
           </nav>

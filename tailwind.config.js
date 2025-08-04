@@ -5,6 +5,7 @@ module.exports = {
   content: [
     './docs/', 
     './my_blog/templates/**/*.html', 
+    './my_blog/**/*.html', 
   ],
 
   plugins: [

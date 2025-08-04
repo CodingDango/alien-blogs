@@ -13,3 +13,5 @@ function showHamburgerMenu()
     // Make body unscrollable
     document.querySelector('body').classList.toggle('overflow-hidden');
 }
+
+// document.addEventListener here...
