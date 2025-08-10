@@ -9,6 +9,12 @@ class Blog(models.Model):
     BLOG_DATE_CREATED_FORMAT = '%B %m, %Y' # Example: January 30, 2025
     BLOG_TAG_MAX_LEN = 30 # These are short. example is 'Discoveries'. just one tag because i dont feel like learning 'ManyToMany' bullshit.
     BLOG_TAG_OPTIONS = ['theories', 'discoveries', 'interviews', 'stories'] # A Post can only have one tag.
+    TAG_OPTIONS = (
+        ('theories', 'Theories'), 
+        ('discoveries', 'Discoveries'), 
+        ('interviews', 'Interviews'), 
+        ('stories', 'Stories'),
+    )
 
     title = models.CharField(max_length=BLOG_TITLE_MAX_LEN)
     description = models.CharField(max_length=BLOG_DESCRIPTION_MAX_LEN)

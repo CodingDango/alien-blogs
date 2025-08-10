@@ -29,7 +29,8 @@ class CustomUser(AbstractUser):
     
     # Email is now the unique login identifier.
     email = models.EmailField('email address', unique=True)
-
+    is_staff = models.BooleanField(default=False)
+    
     USERNAME_FIELD = 'email'
     # These fields are required when running `createsuperuser`.
     REQUIRED_FIELDS = ['first_name', 'last_name']

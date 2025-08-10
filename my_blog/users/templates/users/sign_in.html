@@ -28,11 +28,11 @@
 
         <!-- Error -->
         {% if error_msg %}
-        <div class="ancestor-to-delete p-4 border border-red-600 bg-red-700/10 relative rounded-md">
+        <div class="ancestor-to-hide p-4 border border-red-600 bg-red-700/10 relative rounded-md">
           <div class="flex justify-center items-center">
             <p>{{ error_msg }}</p>
           </div>
-          <button class="js-delete-ancestor z-10 absolute flex justify-center items-center text-red-600 right-4 top-1/2">
+          <button class="js-hide-ancestor z-10 absolute flex justify-center items-center text-red-600 right-4 top-1/2">
             <i class="fa-solid fa-xmark fa-xl"></i>
           </button>
         </div>

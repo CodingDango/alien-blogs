@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block link %}
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="{% static 'js/edit.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+  Post Blog - Alien Blog
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-[calc(100vh-theme(spacing.header))] pb-[100px] bg-my-black-300">
+    <div class="bg-my-black-300 flex flex-col justify-center items-center p-0 md:py-10">
+
+      <div class="max-w-4xl w-full flex flex-col gap-y-10 py-10">
+
+        <div class="w-full">
+          <h1 class="text-white text-3xl sm:text-4xl font-roboto">Edit Blog</h1>
+          <div class="h-1 w-20 bg-neon-purple mt-2 rounded-full"></div>
+        </div>
+
+        <form id="blog-form" class="w-full flex flex-col gap-y-10" method="POST" action="/blogs/edit/{{ blog.id }}" novalidate>
+          {% csrf_token %}
+          
+          <div class="w-full h-full bg-zinc-800 flex flex-col gap-y-7 p-7 rounded-md">
+
+            <h2 class="text-my-white text-2xl font-medium">General Information</h2>
+
+            <div class="flex flex-col gap-y-5">
+              <!-- Title -->
+              <div class="flex flex-col gap-y-2">
+                <div class="flex justify-between items-baseline">
+                  <div class="flex gap-x-2">
+                    <label for="{{ form.title.id_for_label }}" class="font-medium text-lg text-white">
+                        {{ form.title.label }}
+                    </label>
+                    <span class="font-bold text-xl text-neon-purple">*</span>
+                  </div>
+                  <p class="text-gray-400 text-sm">Max <span class="font-semibold text-[18px]">{{ blog.BLOG_TITLE_MAX_LEN }}</span> characters</p>
+                </div>
+                {% render_field form.title class="placeholder-zinc-500 resize-none w-full bg-zinc-900 text-white rounded-md p-3 border border-transparent focus:border-neon-purple focus:outline-none" %}
+                  
+                
+                <p class="text-red-400">{{ form.title.errors|first }}</p>
+              </div>
+
+              <!-- Short description for bloglist -->
+              <div class="flex flex-col gap-y-2">
+                <div class="flex justify-between items-baseline">
+                  <div class="flex gap-x-2">
+                    <label for="{{ form.description.id_for_label }}" class="font-medium text-lg text-white">
+                        {{ form.description.label }}
+                    </label>
+                    <span class="font-bold text-xl text-neon-purple">*</span>
+                  </div>
+                  <p class="text-gray-400 text-sm">Max <span class="font-semibold text-[18px]">{{ blog.BLOG_DESCRIPTION_MAX_LEN }}</span> characters</p>
+                </div>
+                {% render_field form.description class="resize-none placeholder-zinc-500 w-full bg-zinc-900 text-white rounded-md p-3 border border-transparent focus:border-neon-purple focus:outline-none" placeholder="A short and compelling summary for the blog." rows='3' %} 
+                <p class="text-red-400 border-red-400">{{ form.description.errors|first }}</p>
+              </div>
+            </div>
+
+            <!-- A Singular Tag for the blog -->
+            <div class="flex flex-col gap-y-3">
+              <div class="flex gap-x-2">
+                <label for="{{ form.tag.id_for_label }}" class="font-medium text-lg text-white">
+                  {{ form.tag.label }}
+                </label>
+                <span class="font-bold text-xl text-neon-purple">*</span>
+              </div>
+            
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-5 justify-center items-center"> 
+                <!-- I dont know how to load this with the form -->
+                {% for radio in form.tag %}
+                    <label 
+                      class="select-none flex gap-x-3 items-center justify-center px-3 py-2 rounded-md border border-gray-500 has-[input:checked]:border-neon-purple has-[input:checked]:bg-neon-purple/10"
+                    >
+                      <div class="text-white accent-mono-neon-purple">
+                        {{ radio }}
+                      </div>
+                    </label>
+                {% endfor %}
+              </div>
+              <p class="text-red-400 border-red-400">{{ form.tag.errors|first }}</p>
+            </div>
+
+            <!-- Will the blog be featured (OPTIONAL)-->
+            <div class="flex flex-col gap-y-3">
+              <div class="flex gap-x-2">
+                <label id="form.is_featured.id_for_label" class="font-semibold text-lg text-white">
+                  {{ form.is_featured.label }}
+                </label>
+                <span class="font-bold text-xl text-neon-purple">*</span>
+              </div>
+              {% render_field form.is_featured class="accent-neon-purple"%}
+            </div>
+          </div>
+
+          <!-- Blog content -->
+          <div class="w-full h-full bg-zinc-800 flex flex-col gap-y-7 p-7 rounded-md">
+            <h2 class="text-my-white text-2xl font-medium">Main Content</h2>
+            <p class="text-gray-400">This is the body of the blog. The content will be displayed in markdown format. As a result, markdown syntax is usable.</p>
+            <div class="flex flex-col gap-y-2">
+              <div class="flex justify-between items-baseline">
+                <div class="flex gap-x-2">
+                  <label id="form.content.id_for_label" class="font-semibold text-lg text-white">
+                    {{ form.content.label }}
+                  </label>
+                  <!-- <label for="blog-content">What is the content of the blog post? You can use Markdown.</label> -->
+                  <span class="font-bold text-xl text-neon-purple">*</span>
+                </div>
+              </div>
+              <div class="bg-mono-neon-purple/30 p-5 rounded-md flex flex-col gap-y-5">
+                <div class="w-full flex">
+                    <button type="button" id="content-write-btn" onclick="blogContentSwitchView('write')" class="text-my-lime font-semibold px-5 pb-2 border-b-2 border-my-lime">Write</button>
+                    <button type="button" id="content-preview-btn" onclick="blogContentSwitchView('preview')" class="text-gray-400 font-semibold px-5 pb-2 border-b-2 border-gray-500">Preview</button>
+                </div>
+                
+                <div class="grid grid-cols-1 grid-rows-1 h-[30rem]">
+                  {% render_field form.content data-blog-content="true" class="placeholder-zinc-500 resize-none h-full p-3 col-start-1 col-end-1 row-start-1 row-end-1 w-full bg-zinc-900 text-white rounded-md border border-transparent focus:border-neon-purple focus:outline-none" placeholder="Write your full blog post here using Markdown..." rows="20" %}
+                    
+
+                  <!-- Markdown preview -->
+                  <div 
+                    class="overflow-auto invisible rounded-md p-3 col-start-1 col-end-1 row-start-1 row-end-1 h-full w-full border border-gray-500"
+                  >
+                    <div 
+                      id="blog-content-markdown-preview" 
+                      class="max-w-none prose prose-invert text-white w-full h-full"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <p class="text-red-400">{{ form.content.errors|first }}</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2">
+            <button 
+              type="submit" 
+              class="col-start-2 col-end-2 w-full bg-mono-neon-purple text-white font-bold text-lg p-3 rounded-md border-2 border-transparent focus:border-neon-purple focus:outline-none hover:brightness-90"
+            >Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

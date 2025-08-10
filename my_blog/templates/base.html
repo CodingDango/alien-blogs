@@ -1,4 +1,5 @@
 {% load static %}
+{% load user_tags %}
 
 <!doctype html>
 <html>
@@ -17,6 +18,10 @@
 
   <!-- Fontawesome -->
   <script src="https://kit.fontawesome.com/42a5858d3a.js" crossorigin="anonymous"></script>
+
+  <!-- Scripts -->
+  <script src="{% static 'js/dropdown.js' %}"></script>
+
   {% block link %}
   {% endblock %}
 
@@ -24,6 +29,8 @@
       {% block title %}
       {% endblock %}
   </title>
+
+  {% is_admin request.user as user_is_admin %}
 
 </head>
 <body>
@@ -38,7 +45,7 @@
           <nav class="w-full px-5">
 
             <!-- Desktop mode -->
-            <div class="hidden md:flex w-full justify-between items-center">
+            <div class="hidden sm:flex w-full justify-between items-center">
               <!-- Left side -->
               <div class="flex gap-x-5 items-center">
                 <!-- Logo -->
@@ -72,7 +79,7 @@
               <div class="flex gap-x-5 items-center">
 
                 <!-- Profile picture -->
-                {% if request.user.is_authenticated %}
+                {% if user_is_admin %}
                   <!-- Create blog post admin only -->
                   <a href="/blogs/create">
                     <div class="flex gap-x-3 px-3 py-2 border rounded-md border-gray-500">
@@ -82,20 +89,21 @@
                   </a>
 
                   <div class="relative flex items-center">
-                    <button class="w-[35px] h-[35px]">
+
+                    <button data-toggle="dropdown" class="w-[35px] h-[35px]">
                       <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
                     </button>
                     
-                    <div class="py-2 absolute mt-2 rounded-md shadow-lg w-48 right-0 top-full bg-zinc-800 z-10">
+                    <div data-dropdown class="hidden py-2 absolute mt-2 rounded-md shadow-lg w-48 right-0 top-full bg-zinc-800 z-10">
                       <ul class="flex flex-col">
                         <li>
-                          <a href="#">
-                            <div class="w-full py-2 pl-4">Profile</div>
+                          <a class="w-full" href="#">
+                            <div class="w-full hover:bg-white/10 py-2 pl-4">Profile</div>
                           </a>
                         </li>
                         <li>
-                          <a href="/users/sign-out">
-                            <div class="w-full py-2 pl-4">Sign out</div>
+                          <a class="w-full " href="/users/sign-out">
+                            <div class="w-full hover:bg-white/10 py-2 pl-4">Sign out</div>
                           </a>
                         </li>
                       </ul>
@@ -109,17 +117,41 @@
                   </a>
                 {% endif %}
                 <!-- Search Button -->
-                <button>
-                  <span class="flex justify-center items-center">
-                    <i class="text-gray-400 fa-solid fa-magnifying-glass fa-lg hover:brightness-125"></i>
-                  </span>
-                </button>
-                
+                <div class="relative flex items-center">
+                  <button data-toggle="dropdown">
+                    <span class="flex justify-center items-center">
+                      <i class="text-gray-400 fa-solid fa-magnifying-glass fa-lg hover:brightness-125"></i>
+                    </span>
+                  </button>
+                  
+                  <!-- Search dropdown -->
+                  <div data-dropdown class="mt-4 hidden absolute mb-4 ml-1 right-0 w-64">
+                    <div class="flex flex-col gap-5">
+                      <!-- Search -->
+                      <form 
+                        action="/blogs/search"
+                        method="get"
+                        class="w-full pl-4 flex border border-gray-600 bg-zinc-900 rounded-md outline-none focus-within:border-blue-500"
+                        novalidate
+                      >
+                        <div class="flex items-center justify-center">
+                          <i class="text-gray-300 fa-solid fa-magnifying-glass fa-md"></i>
+                        </div>
+
+                        <input 
+                          class="w-full p-2 bg-transparent placeholder-zinc-500 text-white outline-none rounded-r-md"
+                          name="query"
+                          placeholder="Search blog"
+                        >
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <!-- Mobile mode -->
-            <div class="flex flex-col gap-7 md:hidden w-full h-full">
+            <div class="sm:hidden flex flex-col gap-7 w-full h-full">
       
               <!-- Non hamburger menu mode -->
               <div class="w-full flex justify-between items-center">
@@ -159,75 +191,87 @@
               <!-- Hamburger Menu Mode -->
               <div 
                 id="hamburgerMenuDiv" 
-                class="h-[calc(100vh-(theme(spacing.header)+28px))] hidden overflow-hidden w-full bg-my-black-300">
+                class="h-[calc(100vh-(theme(spacing.header)+28px))] hidden w-full bg-my-black-300"
+              >
+                <div class="flex flex-col gap-5">
+                  <!-- Search -->
+                  <form 
+                    action="/blogs/search"
+                    method="get"
+                    class="w-full pl-4 flex bg-zinc-900 rounded-md outline-none border border-transparent focus-within:border-blue-500">
 
-                <!-- Search -->
-                <div class="w-full pl-4 mb-8 flex bg-zinc-900 rounded-md outline-none border border-transparent focus-within:border-blue-500">
+                    <div class="flex items-center justify-center">
+                      <i class="text-gray-300 fa-solid fa-magnifying-glass fa-md"></i>
+                    </div>
 
-                  <div class="flex items-center justify-center">
-                    <i class="text-gray-300 fa-solid fa-magnifying-glass fa-md"></i>
+                    <input 
+                      name="query"
+                      class="w-full p-3 bg-transparent placeholder-zinc-500 text-white outline-none rounded-r-md"
+                      placeholder="Search blog"
+                    >
+                    
+                    <!-- <button class="w-20 h-14 flex justify-center items-center bg-emerald-500 hover:bg-emerald-600 rounded-r-md">
+                      <i class="text-white fa-solid fa-magnifying-glass fa-lg"></i>
+                    </button> -->
+                  </form>
+
+                  <div class="flex flex-col gap-y-5">
+                    <ul class="w-full flex flex-col gap-y-2">
+                      <li>
+                        <a href="#" class="text-md text-neon-purple">
+                          <div class="w-full py-2 pl-4 bg-dark-neon-purple/20 hover:bg-dark-neon-purple/30 rounded-md">Blogs</div>   
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#" class="w-full">
+                          <div class="text-md py-2 pl-4 rounded-md bg-transparent hover:bg-white/5 outline-none">
+                            Home
+                          </div>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#" class="w-full">
+                          <div class="text-md py-2 pl-4 rounded-md bg-transparent hover:bg-white/5 outline-none">
+                            About Us
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+
+                    <div class="h-[1px] w-full border-t border-zinc-800"></div>
+
+                    <div class="pt-2 flex flex-col gap-y-5">
+                      {% if request.user.is_authenticated %}  
+                        <div class="flex items-center gap-x-3">
+                          <div class="w-[40px] h-[40px]">
+                            <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
+                          </div> 
+                          <div>
+                            <p>
+                              <span>{{ request.user.first_name }}</span> 
+                              <span>{{ request.user.last_name }}</span>
+                            </p>
+                            <p class="text-gray-400">{{ request.user.email }}</p>
+                          </div>
+                        </div>
+                        <ul class="flex flex-col gap-y-2">
+                          <li>
+                            <a href='#' class=" text-md text-gray-400">
+                              <div class="w-full pl-4 py-2">Your Profile</div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href='/users/sign-out' class="text-md text-gray-400">
+                              <div class="w-full pl-4 py-2">Sign out</div>
+                            </a>
+                          </li>
+                        </ul>
+                      {% endif %}
+                    </div>
                   </div>
-
-                  <input 
-                    class="w-full p-3 bg-transparent placeholder-zinc-500 text-white outline-none rounded-r-md"
-                    placeholder="Search blog"
-                  >
-
-                  <!-- <button class="w-20 h-14 flex justify-center items-center bg-emerald-500 hover:bg-emerald-600 rounded-r-md">
-                    <i class="text-white fa-solid fa-magnifying-glass fa-lg"></i>
-                  </button> -->
                 </div>
-
-                <div class="flex flex-col gap-y-3">
-                  <ul class="w-full flex flex-col gap-y-3">
-                    <li>
-                      <a href="#" class="w-full">
-                        <div class="text-md w-full py-2 pl-4 text-neon-purple bg-dark-neon-purple/20 hover:bg-dark-neon-purple/30 rounded-md">
-                          Blogs
-                        </div>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href="#" class="w-full">
-                        <div class="text-md py-2 pl-4 rounded-md bg-transparent hover:bg-white/5">
-                          Home
-                        </div>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href="#" class="w-full">
-                        <div class="text-md py-2 pl-4 rounded-md bg-transparent hover:bg-white/5">
-                          About Us
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-
-                  <div class="pl-4 pt-4 border-t border-zinc-800 flex flex-col gap-y-5">
-                    {% if request.user.is_authenticated %}  
-                      <div class="flex items-center gap-x-3">
-                        <div class="w-[40px] h-[40px]">
-                          <img class="w-full h-full object-cover rounded-full" src="{% static 'imgs/placeholder.jpg' %}">
-                        </div> 
-                        <div>
-                          <p>
-                            <span>{{ request.user.first_name }}</span> 
-                            <span>{{ request.user.last_name }}</span>
-                          </p>
-                          <p class="text-gray-400">{{ request.user.email }}</p>
-                        </div>
-                      </div>
-                      <ul class="flex flex-col gap-y-3">
-                        <li class="text-gray-300">Your Profile</li>
-                        <li class="text-gray-300">Sign out</li>
-                      </ul>
-                    {% endif %}
-                  </div>
-
-                </div>
-
               </div>
             </div>
           </nav>
